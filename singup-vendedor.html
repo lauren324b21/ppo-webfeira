@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up Saller</title>
+    <link rel="stylesheet" href="styles/singup.css">
+</head>
+<body>
+
+
+    <link rel="stylesheet" href="styles/singup-vendedor.css">
+
+
+
+    <main>
+        <h1>Seja um vendedor!</h1>
+        
+        
+        <script>
+            function salvarFormulario(){
+               if (localStorage.cont) {
+                  localStorage.cont = Number(localStorage.cont)+1;
+               } else {
+                  localStorage.cont = 1;
+               }
+               
+               dados = document.getElementById('nome').value + ';'  + document.getElementById('cpf').value 
+               + ';'  + document.getElementById('nascimento').value
+               + ';'  + document.getElementById('endereco').value
+               + ';'  + document.getElementById('telefone').value
+                      + document.getElementById('email').value;
+               localStorage.setItem("dados_"+localStorage.cont,dados);
+            }
+        </script>
+
+        <form action="">
+            <label for="nome">
+                <span>Nome</span>
+                <input type="text" id="nome" name="nome" required>
+            </label>
+
+            <label for="cpf">
+                <span>CPF</span>
+                <input type="number" id="cpf" name="cpf" required>
+            </label>
+
+            <label for="nascimento">
+                <span>Data de nascimento</span>
+                <input type="date" id="nascimento" name="nascimento" required>
+            </label>
+
+
+            <label for="endereco">
+                <span>Endereço</span>
+                <input type="text" id="endereco" name="endereco" required>
+            </label>
+
+            <label for="telefone">
+                <span>Telefone</span>
+                <input type="tel" id="telefone" name="telefone" required>
+            </label>
+
+            <label for="email">
+                <span>E-mail</span>
+                <input type="email" id="email" name="email" required>
+            </label>
+
+            
+           
+
+            <label for="senha">
+                <span>Senha</span>
+                <input type="password" id="senha" name="senha" required>
+            </label>
+            <button id="button" onclick="salvarFormulario()">Cadastrar</button>
+           
+        </form>
+    </main>
+
+    <section class="images">
+        <img src="assets/saller.svg" alt="Mobile">
+        
+    </section>
+
+
+   
+</body>
