@@ -19,9 +19,10 @@ body {
 }
 
 main.container {
-    background: white;
+    
     max-width: 350px;
-    min-height: 40vh;
+    min-height: 10vh;
+    background: white;
     padding: 2rem;
     box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
     border-radius: 8px;
@@ -37,7 +38,7 @@ main h2::before {
     content: '';
     position: absolute;
     height: 4px;
-    width: 25px;
+    width: 210px;
     bottom: 1px;
     left: 0;
     border-radius: 8px;
@@ -54,16 +55,11 @@ form {
 }
 
 
-.remember{
-  margin-top: 15px;
-  vertical-align: middle;
-  position: relative;
-  font-size: 15px;
-}
-form .input-field:first-child {
-    margin-bottom: 1.5rem;
-}
 
+form .input-field {
+    margin-bottom: 1.5rem;
+    
+}
 
 .input-field .underline::before {
     content: '';
@@ -102,20 +98,8 @@ form .input-field:first-child {
     color: rgba(0, 0, 0, 0.5);
 }
 
-.forgot{
-   
-    
-    margin-top: 15px;
-    padding-left: 25%;
-    padding-right: 25%;
-    font-size: 12px;
-    display: flex;
-    align-content: center;
- 
-}
-
 form input[type="submit"] {
-    margin-top: 2rem;
+    
     padding: 0.4rem;
     background: linear-gradient(to left, #40e095, #0aca24);
     cursor: pointer;
@@ -131,50 +115,3 @@ form input[type="submit"]:hover {
     background: linear-gradient(to right, #40e095, #0aca24);
 }
 
-.footer {
-    display: flex;
-    flex-direction: column;
-    margin-top: 1rem;
-}
-
-.footer span {
-    color: rgba(0, 0, 0, 0.7);
-    font-size: 0.8rem;
-    text-align: center;
-}
-
-.footer .social-field {
-    padding: 0.4rem;
-    border-radius: 4px;
-    font-size: 0.85rem;
-    width: 100%;
-    cursor: pointer;
-    margin-top: 1rem;
-}
-
-.footer .social-field a i {
-    margin: 0 0.5rem;
-    width: 15px;
-}
-
-.footer .social-field a {
-    text-decoration: none;
-    color: white;
-}
-
-.footer .social-field.google {
-    background: linear-gradient(to right, #f72b2b, #ee5d5d);
-}
-
-.footer .social-field.facebook {
-    background: linear-gradient(to right, #1e3c72, #2a5298);
-}
-
-
-.footer .singup a {
-    display:flex;
-    align-content: center;
-    margin-top: 15px;
-    padding-left: 25%;
-    padding-right: 25%;
-}
