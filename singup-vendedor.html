@@ -3,55 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up Saller</title>
+    <title>Add vendedor</title>
     <link rel="stylesheet" href="styles/singup.css">
 </head>
 <body>
 
 
-    <link rel="stylesheet" href="styles/singup-vendedor.css">
+    <main class="container">
+        <h1>Adicione um vendedor</h1>
 
 
-
-    <main>
-        <h1>Seja um vendedor!</h1>
-        
-        
-        <script>
-            function salvarFormulario(){
-               if (localStorage.cont) {
-                  localStorage.cont = Number(localStorage.cont)+1;
-               } else {
-                  localStorage.cont = 1;
-               }
-               
-               dados = document.getElementById('nome').value + ';'  + document.getElementById('cpf').value 
-               + ';'  + document.getElementById('nascimento').value
-               + ';'  + document.getElementById('endereco').value
+         <script>
+        function salvarFormulario(){
+           if (localStorage.cont) {
+              localStorage.cont = Number(localStorage.cont)+1;
+           } else {
+              localStorage.cont = 1;
+           }
+           
+           
+           dados =  document.getElementById('associacao').value  
+               + ';'  + document.getElementById('cnpj').value
                + ';'  + document.getElementById('telefone').value
-                      + document.getElementById('email').value;
+                      + document.getElementById('endereco').value;
                localStorage.setItem("dados_"+localStorage.cont,dados);
-            }
-        </script>
+        }
+    </script>
+
+
+        
 
         <form action="">
-            <label for="nome">
-                <span>Nome</span>
-                <input type="text" id="nome" name="nome" required>
-            </label>
 
-           
+            <div class="input-field">
+    
+    
+                <label for="associacao">
+                    <span>Associação</span>
+                    <input type="text" id="associacao" name="associacao" required>
+                </label>
+    
 
-           
+                <label for="CNPJ">
+                    <span>CNPJ</span>
+                    <input type="number" id="cnpj" name="cnpj" required>
+                </label>
+    
+    
+                <label for="endereco">
+                    <span>Endereço</span>
+                    <input type="text" id="endereco" name="endereco" required>
+                </label>
+    
+                <label for="telefone">
+                    <span>Telefone</span>
+                    <input type="tel" id="telefone" name="telefone" required>
+                </label>
+
+                
+
+            </div>
+
+            
+
+            
+                
+             
             <button id="button" onclick="salvarFormulario()">Cadastrar</button>
            
         </form>
+
+
+        <div class="produtos">
+            <span>Quais produtos você vende?</span>
+            <br>
+
+                <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+                <label for="vehicle1"> Alface</label><br>
+                <input type="checkbox" id="vehicle2" name="vehicle2" value="Car">
+                <label for="vehicle2"> Couve</label><br>
+                <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat">
+                <label for="vehicle3"> Macaxeira</label><br><br>
+
+                </form>
+        </div>
     </main>
 
-    <section class="images">
-        <img src="assets/saller.svg" alt="Mobile">
-        
-    </section>
+    
 
 
    

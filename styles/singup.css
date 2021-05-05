@@ -114,19 +114,6 @@ main form input {
 }
 
 
-.vendedor{
-    
-    padding: 10px;
-    font-size: 15px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-
-   
-  }
-
-
 main form #button{
     cursor: pointer;
     width: 50%;
