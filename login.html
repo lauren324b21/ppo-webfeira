@@ -6,18 +6,18 @@
 
     <script src="https://kit.fontawesome.com/1ab94d0eba.js" crossorigin="anonymous"></script>
     <title>Login</title>
-    <link rel="stylesheet" href="/styles/login.css">
+    <link rel="stylesheet" href="css/login.css">
 </head>
 <body>
     <main class="container">
         <h2>Login</h2>
-        <form action="">
+        <form method="post" action="processa3.php">
             <div class="input-field">
-                <input type="text" name="username" id="username" placeholder="Infome seu usuário">
+                <input type="text" name="email" id="email" placeholder="Infome seu email">
                 <div class="underline"></div>
             </div>
             <div class="input-field">
-                <input type="password" name="password" id="password" placeholder="Informe sua senha">
+                <input type="password" name="senha" id="senha" placeholder="Informe sua senha">
                 
                 <div class="underline"></div>
             </div>
@@ -32,8 +32,6 @@
                 <a href="reset-pass.html" target="_blank" id="forgot-pass">Esqueceu a senha?</a>
             </div>
            
-       
-
             <input type="submit" value="Entrar">
         </form>
 
