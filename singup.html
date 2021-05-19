@@ -22,31 +22,9 @@
 
         <div class="alternative">
             <span>OU</span>
-        </div>
+        </div>    
 
-
-         <script>
-        function salvarFormulario(){
-           if (localStorage.cont) {
-              localStorage.cont = Number(localStorage.cont)+1;
-           } else {
-              localStorage.cont = 1;
-           }
-           
-           
-           dados = document.getElementById('nome').value + ';'  + document.getElementById('cpf').value 
-               + ';'  + document.getElementById('nascimento').value
-               + ';'  + document.getElementById('endereco').value
-               + ';'  + document.getElementById('telefone').value
-                      + document.getElementById('email').value;
-               localStorage.setItem("dados_"+localStorage.cont,dados);
-        }
-    </script>
-
-
-        
-
-        <form action="">
+        <form action="processa.php">
 
             <div class="input-field">
                 <label for="nome">
@@ -96,7 +74,7 @@
             
                 
              
-            <button id="button" onclick="salvarFormulario()">Cadastrar</button>
+            <button id="button">Cadastrar</button>
            
         </form>
     </main>
