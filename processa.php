@@ -34,6 +34,8 @@
         <?php
             if($linhas == 1){
             print "Cadastro efetuado com Sucesso!";
+            header('Location: alterarCliente.html');
+
             } else {
                 print "Houve um erro! <br>Email ou cpf já existentes";
             }
