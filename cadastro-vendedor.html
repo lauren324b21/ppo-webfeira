@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add vendedor</title>
+    <link rel="stylesheet" href="css/cadastro.css">
+</head>
+<body>
+
+
+    <main class="container">
+        <h1>Adicione um vendedor</h1>
+
+
+         <script>
+        function salvarFormulario(){
+           if (localStorage.cont) {
+              localStorage.cont = Number(localStorage.cont)+1;
+           } else {
+              localStorage.cont = 1;
+           }
+           
+           
+           dados =  document.getElementById('associacao').value  
+               + ';'  + document.getElementById('cnpj').value
+               + ';'  + document.getElementById('telefone').value
+                      + document.getElementById('endereco').value;
+               localStorage.setItem("dados_"+localStorage.cont,dados);
+        }
+    </script>
+
+
+        
+
+        <form method="post" action="processa2.php">
+
+            <div class="input-field">
+    
+    
+                <label for="Nome">
+                    <span>Nome</span>
+                    <input type="text" id="nome" name="nome" maxlength="40" required autofocus>
+                </label>
+    
+
+                <label for="CNPJ">
+                    <span>CNPJ</span>
+                    <input type="number" id="cnpj" name="cnpj" maxlength="14" required autofocus>
+                </label>
+    
+    
+                <label for="endereco">
+                    <span>Endereço</span>
+                    <input type="text" id="endereco" name="endereco" maxlength="40" required autofocus>
+                </label>
+    
+                <label for="telefone">
+                    <span>Telefone</span>
+                    <input type="tel" id="telefone" name="telefone" maxlength="11" required>
+                </label>
+
+                
+
+            </div>
+            <button id="button">Cadastrar</button>
+           
+        </form>
+    </main>
+
+    
+
+
+   
+</body>
