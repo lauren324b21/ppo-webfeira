@@ -66,7 +66,8 @@
         </nav>
 
         <main class="flex-fill">
-            <div class="container">
+           
+                <div class="container">
                 <h1>Informe seus dados</h1>
                 <hr>
                 <form class="mt-3">
@@ -75,30 +76,28 @@
                             <fieldset class="row gx-3">
                                 <legend>Dados Pessoais</legend>
                                 <div class="form-floating mb-3">
-                                    <input class="form-control" type="text" id="txtNome" placeholder=" " autofocus />
-                                    <label for="txtNome">Nome</label>
+                                    <input class="form-control" type="text" id="nome" placeholder=" " autofocus />
+                                    <label for="nome">Nome</label>
                                 </div>
                                 <div class="form-floating mb-3 col-md-6 col-xl-4">
-                                    <input class="form-control" type="text" id="txtCPF" placeholder=" " />
-                                    <label for="txtCPF">CPF</label>
+                                    <input class="form-control" type="text" id="cpf" placeholder=" " maxlength="11"/>
+                                    <label for="cpf">CPF</label>
                                 </div>
                                 <div class="form-floating mb-3 col-md-6 col-xl-4">
                                     <input class="form-control" type="date" id="txtDataNascimento" placeholder=" " />
                                     <label for="txtDataNascimento" class="d-inline d-sm-none d-md-inline d-lg-none">Data
                                         Nascimento</label>
-                                    <label for="txtDataNascimento" class="d-none d-sm-inline d-md-none d-lg-inline">Data
-                                        de Nascimento</label>
                                 </div>
                             </fieldset>
                             <fieldset>
                                 <legend>Contatos</legend>
                                 <div class="form-floating mb-3 col-md-8">
-                                    <input class="form-control" type="email" id="txtEmail" placeholder=" " />
-                                    <label for="txtEmail">E-mail</label>
+                                    <input class="form-control" type="email" id="email" placeholder=" " />
+                                    <label for="email">E-mail</label>
                                 </div>
                                 <div class="form-floating mb-3 col-md-6">
-                                    <input class="form-control" placeholder=" " type="text" id="txtTelefone" />
-                                    <label for="txtTelefone">Telefone</label>
+                                    <input class="form-control" placeholder="telefone" type="text" id="txtTelefone" />
+                                    <label for="telefone">Telefone</label>
                                 </div>
                             </fieldset>
                         </div>
@@ -106,8 +105,8 @@
                             <fieldset class="row gx-3">
                                 <legend>Endereço</legend>
                                 <div class="form-floating mb-3 col-md-6 col-lg-4">
-                                    <input class="form-control" type="text" id="txtCEP" placeholder=" " />
-                                    <label for="txtCEP">CEP</label>
+                                    <input class="form-control" type="text" id="cep" placeholder=" " />
+                                    <label for="cep">CEP</label>
                                 </div>
                                 <div class="mb-3 col-md-6 col-lg-8 align-self-end">
                                     <textarea class="form-control text-muted bg-light"
@@ -131,8 +130,8 @@
                             <fieldset class="row gx-3">
                                 <legend>Senha de Acesso</legend>
                                 <div class="form-floating mb-3 col-lg-6">
-                                    <input class="form-control" type="password" id="txtSenha" placeholder=" " />
-                                    <label for="txtSenha">Senha</label>
+                                    <input class="form-control" type="password" id="senha" placeholder=" " />
+                                    <label for="senha">Senha</label>
                                 </div>
                                 <div class="form-floating mb-3 col-lg-6">
                                     <input class="form-control" id="txtConfirmacaoSenha" placeholder=" " />
@@ -150,11 +149,13 @@
                     </div>
                     <div class="mb-3 text-left">
                         <a class="btn btn-lg btn-light btn-outline-success" href="/">Cancelar</a>
-                        <input type="button" value="Criar meu cadastro" class="btn btn-lg btn-success"
-                            onclick="window.location.href='/confirmarcadastro.html'" />
+                        <input type="button" value="Criar meu cadastro" class="btn btn-lg btn-success" 
+                            onclick="window.location.href='/login.html'" 
+                            method="post" action="processa.php">
                     </div>
                 </form>
             </div>
+        
         </main>
 
         <footer class="border-top text-muted bg-light">

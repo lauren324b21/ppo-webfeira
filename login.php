@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="pt-br">
 
@@ -5,19 +6,19 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="apple-touch-icon" sizes="180x180" href="/img/favicon/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="/img/favicon/android-icon-192x192.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="/img/favicon/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon/favicon-16x16.png">
-    <link rel="manifest" href="/img/favicon/manifest.json">
+    <link rel="apple-touch-icon" sizes="180x180" href="/ppo-webfeira/img/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/ppo-webfeira/img/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/ppo-webfeira/img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/ppo-webfeira/img/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/ppo-webfeira/img/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/ppo-webfeira/img/favicon/manifest.json">
     <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="/img/favicon/ms-icon-144x144.png">
+    <meta name="msapplication-TileImage" content="/ppo-webfeira/img/favicon/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
 
-    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/node_modules/bootstrap-icons/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="/ppo-webfeira/node_modules/bootstrap/dist/css/bootstrap.min.css" type="text/css"/>
+    <link rel="stylesheet" href="/ppo-webfeira/node_modules/bootstrap-icons/font/bootstrap-icons.css" type="text/css"/>
+    <link rel="stylesheet" href="/ppo-webfeira/css/index.css" type="text/css"/>
 
     <title>Web Feira :: Login</title>
 </head>
@@ -66,19 +67,20 @@
         </nav>
  
         <main class="flex-fill">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <form class="col-sm-10 col-md-8 col-lg-6">
-                        <h1>Identifique-se</h1>
+           
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <form class="col-sm-10 col-md-8 col-lg-6">    
+                            <h1>Identifique-se</h1>
 
                         <div class="form-floating mb-3">
-                            <input type="email" id="txtEmail" class="form-control" placeholder=" " autofocus>
-                            <label for="txtEmail">E-mail</label>
+                            <input type="email" id="email" name="email" class="form-control" placeholder=" " autofocus>
+                            <label for="email">E-mail</label>
                         </div>
 
                         <div class="form-floating mb-3">
-                            <input type="password" id="txtSenha" class="form-control" placeholder=" ">
-                            <label for="txtSenha">Senha</label>
+                            <input type="password" id="senha" name="senha" class="form-control" placeholder=" ">
+                            <label for="senha">Senha</label>
                         </div>
 
                         <div class="form-check mb-3">
@@ -86,20 +88,20 @@
                             <label for="chkLembrar" class="form-check-label">Lembrar de mim</label>
                         </div>
 
-                        <button type="button" onclick="window.location.href='/cliente_pedidos.html'"
-                            class="btn btn-lg btn-success">Entrar</button>
+                        <button type="button" onclick="window.location.href='/ppo-webfeira/processaLogin.php'" class="btn btn-lg btn-success">Entrar</button>
+                        
 
                         <p class="mt-3">
                             <a href="/recuperarsenha.html">Esqueceu a senha?</a> 
                         </p>
 
                         <p class="mt-3">
-                            
                             <a href="/cadastro.html">Ou cadastre-se</a>
                         </p>
                     </form>
                 </div>
-            </div>
+                </div>
+            
         </main>
 
         <footer class="border-top text-muted bg-light">

@@ -12,7 +12,7 @@
 
     if($row == 1){
         $_SESSION['email'] = $email;
-        header('Location: home.html');
+        header('Location: gcliente_pedidos.html');
         exit();
     } else {
         header('Location: erro.html');
