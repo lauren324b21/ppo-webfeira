@@ -1,98 +1,233 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-br">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up Costumer</title>
-    <link rel="stylesheet" href="css/cadastro.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/ppo-webfeira/img/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/ppo-webfeira/img/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/ppo-webfeira/img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/ppo-webfeira/img/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/ppo-webfeira/img/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/ppo-webfeira/img/favicon/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ppo-webfeira/img/favicon/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+    <link rel="stylesheet" href="/ppo-webfeira/node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/ppo-webfeira/node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="/ppo-webfeira/css/index.css">
+    
+    <title>Web Feira :: Cadastro</title>
 </head>
-<body>
 
+<body style="min-width:372px;">
+    <div class="d-flex flex-column wrapper">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-success border-bottom shadow-sm mb-3">
+            <div class="container">
+                <a class="navbar-brand" href="/">
+                    <strong>Web Feira</strong>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target=".navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a href="/ppo-webfeira/index.html" class="nav-link text-white">Principal</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/ppo-webfeira/contato.html" class="nav-link text-white">Contato</a>
+                        </li>
+                    </ul>
+                    <div class="align-self-end">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a href="/ppo-webfeira/cadastro.html" class="nav-link text-white">Quero Me Cadastrar</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/ppo-webfeira/login.html" class="nav-link text-white">Entrar</a>
+                            </li>
+                            <li class="nav-item">
+                                <span class="badge rounded-pill bg-light text-danger position-absolute ms-4 mt-0"
+                                    title="5 produto(s) no carrinho"><small>5</small></span>
+                                <a href="/ppo-webfeira/carrinho.html" class="nav-link text-white">
+                                    <svg class="bi" width="24" height="24" fill="currentColor">
+                                        <use xlink:href="/bi.svg#basket2" />
+                                    </svg>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
 
-    <main class="container">
-        <h1>Criar Conta</h1>
-        <div class="social-media">
-            <a href="#">
-                <img src="assets/google.png" alt="Google">
-            </a>
-            <a href="#">
-                <img src="assets/facebook.png" alt="Facebook">
-            </a>
-        </div>
-
-        <div class="alternative">
-            <span>OU</span>
-        </div>
-
-
-         <script>
-        function salvarFormulario(){
-           if (localStorage.cont) {
-              localStorage.cont = Number(localStorage.cont)+1;
-           } else {
-              localStorage.cont = 1;
-           }
-           
-           
-           dados = document.getElementById('nome').value + ';'  + document.getElementById('cpf').value 
-               + ';'  + document.getElementById('nascimento').value
-               + ';'  + document.getElementById('endereco').value
-               + ';'  + document.getElementById('telefone').value
-                      + document.getElementById('email').value;
-               localStorage.setItem("dados_"+localStorage.cont,dados);
-        }
-    </script>
-
-
-        
-
+        <h1>Informe seus dados</h1>
         <form method="post" action="processa.php">
-
             <div class="input-field">
-                <label for="nome">
-                    <span>Nome</span>
-                    <input type="text" id="nome" name="nome" maxlength="40" required autofocus>
-                </label>
-    
-                <label for="email">
-                    <span>E-mail</span>
-                    <input type="email" id="email" name="email" maxlength="50" required>
-                </label>
-    
-                <label for="senha">
-                    <span>Senha</span>
-                    <input type="password" id="senha" name="senha" maxlength="30" required>
-                </label>
+            <div class="col-sm-12 col-md-6">
+                <fieldset class="row gx-3">
+                    <legend>Dados Pessoais</legend>
+                        <label for="nome">
+                        <span>Nome</span>
+                        <input type="text" id="nome" name="nome" maxlength="40" required autofocus>
+                        </label>
 
-                <label for="senha">
-                    <span>Repetir senha</span>
-                    <input type="password" id="senha" name="senha" maxlength="30" required>
-                </label>
+                        <label for="cpf">
+                        <span>CPF</span>
+                        <input type="number" id="cpf" name="cpf" maxlength="11" required>
+                        </label>
 
-                <label for="cpf">
-                    <span>CPF</span>
-                    <input type="number" id="cpf" name="cpf" maxlength="11" required>
-                </label>
-    
-                <label for="nascimento">
-                    <span>Data de nascimento</span>
-                    <input type="date" id="nascimento" name="nascimento" required>
-                </label>
-    
-    
-                <label for="endereco">
-                    <span>Endereço</span>
-                    <input type="text" id="endereco" name="endereco" maxlength="40" required>
-                </label>
-    
-                <label for="telefone">
-                    <span>Telefone</span>
-                    <input type="tel" id="telefone" name="telefone" maxlength="11" required>
-                </label>           
-                
-             
-        <button id="button">Cadastrar</button>
-           
+                        <label for="nascimento">
+                        <span>Data de nascimento</span>
+                        <input type="date" id="nascimento" name="nascimento" required>
+                        </label>
+                </fieldset>       
+                <fieldset class="row gx-3">
+                    <legend>Contatos</legend>
+                        <label for="email">
+                        <span>E-mail</span>
+                        <input type="email" id="email" name="email" maxlength="50" required>
+                        </label>
+
+                        <label for="telefone">
+                        <span>Telefone</span>
+                        <input type="tel" id="telefone" name="telefone" maxlength="11" required>
+                        </label>
+                        
+                        <label for="endereco">
+                        <span>Endereço</span>
+                        <input type="text" id="endereco" name="endereco" maxlength="40" required>
+                        </label>
+                </fieldset>
+                <fieldset class="row gx-3">
+                    <legend>Senha de Acesso</legend>
+                        <label for="senha">
+                        <span>Senha</span>
+                        <input type="password" id="senha" name="senha" maxlength="30" required>
+                        </label>
+                </fieldset>
+                <button id="button">Cadastrar</button>
         </form>
-    </main>
+        
+        
+        <main class="flex-fill">
+        <div class="container">
+                <h1>Informe seus dados</h1>
+                <hr>
+                <form class="mt-3">
+                    <div class="row justify-content-center">
+                        <div class="col-sm-12 col-md-6">
+                            <fieldset class="row gx-3">
+                                <legend>Dados Pessoais</legend>
+                                <div class="form-floating mb-3">
+                                    <input class="form-control" type="text" id="nome" name="nome" maxlength="40" placeholder=" " required autofocus />
+                                    <label for="nome">Nome</label>
+                                </div>
+                                <div class="form-floating mb-3 col-md-6 col-xl-4">
+                                    <input class="form-control" type="text" id="cpf" name="cpf" placeholder=" " maxlength="11" required/>
+                                    <label for="cpf">CPF</label>
+                                </div>
+                                <div class="form-floating mb-3 col-md-6 col-xl-4">
+                                    <input class="form-control" type="date" id="nascimento" name="nascimento" placeholder=" " />
+                                    <label for="txtDataNascimento" class="d-inline d-sm-none d-md-inline d-lg-none">Data
+                                        Nascimento</label>
+                                </div>
+                            </fieldset>
+                            <fieldset>
+                                <legend>Contatos</legend>
+                                <div class="form-floating mb-3 col-md-8">
+                                    <input class="form-control" type="email" id="email" name="email" maxlength="50" required placeholder=" " />
+                                    <label for="email">E-mail</label>
+                                </div>
+                                <div class="form-floating mb-3 col-md-6">
+                                    <input class="form-control" placeholder="telefone" type="tel" id="telefone" name="telefone" maxlength="11" required />
+                                    <label for="telefone">Telefone</label>
+                                </div>
+                            </fieldset>
+                        </div>
+                        <div class="col-sm-12 col-md-6">
+                            <fieldset class="row gx-3">
+                                <legend>Endereço</legend>
+                                <div class="form-floating mb-3 col-md-6 col-lg-4">
+                                    <input class="form-control" type="text" name="cep" placeholder=" " />
+                                    <label for="cep">CEP</label>
+                                </div>
+                                <div class="mb-3 col-md-6 col-lg-8 align-self-end">
+                                    <textarea class="form-control text-muted bg-light"
+                                        style="height: 58px; font-size: 14px;"
+                                        disabled>Digite o CEP para buscarmos o endereço.</textarea>
+                                </div>
+                                <div class="clearfix"></div>
+
+                                <div class="form-floating mb-3 col-md-8">
+                                    <input class="form-control"type="text" id="endereco" name="endereco" maxlength="40" required placeholder=" " />
+                                    <label for="txtComplemento">Endereço</label>
+                                </div>
+                              
+                            </fieldset>
+                            <fieldset class="row gx-3">
+                                <legend>Senha de Acesso</legend>
+                                <div class="form-floating mb-3 col-lg-6">
+                                    <input class="form-control"type="password" id="senha" name="senha" maxlength="30" required placeholder=" " />
+                                    <label for="senha">Senha</label>
+                                </div>
+                                <div class="form-floating mb-3 col-lg-6">
+                                    <input class="form-control" id="txtConfirmacaoSenha" placeholder=" " />
+                                    <label class="form-label" for="txtConfirmacaoSenha">Confirmação da Senha</label>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="checkbox" value="" name="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault">
+                            Desejo receber informações sobre promoções.
+                        </label>
+                    </div>
+                    <div class="mb-3 text-left">
+                        <a class="btn btn-lg btn-light btn-outline-success" href="/">Cancelar</a>
+                        <input type="button" value="Criar meu cadastro" class="btn btn-lg btn-success" 
+                            method="post" >
+                    </div>
+                </form>
+            </div>
+        
+        </main>
+    
+
+        <footer class="border-top text-muted bg-light">
+            <div class="container">
+                <div class="row py-3">
+                    <div class="col-12 col-md-4 text-center text-md-left">
+                        &copy; 2021 - Web Feira Ltda ME<br>
+                        Rua Virtual Inexistente, 171, Compulândia/PC <br>
+                        CPNJ 99.999.999/0001-99
+                    </div>
+                    <div class="col-12 col-md-4 text-center">
+                        <a href="/ppo-webfeira/privacidade.html" class="text-decoration-none text-dark">Política de
+                            Privacidade</a><br>
+                        <a href="/ppo-webfeira/termos.html" class="text-decoration-none text-dark">Termos de Uso</a><br>
+                        <a href="/ppo-webfeira/quemsomos.html" class="text-decoration-none text-dark">Quem Somos</a><br>
+                        <a href="/ppo-webfeira/trocas.html" class="text-decoration-none text-dark">Trocas e Devoluções</a>
+                    </div>
+                    <div class="col-12 col-md-4 text-center text-md-right">
+                        <a href="/ppo-webfeira/contato.html" class="text-decoration-none text-dark">Contato pelo site</a><br>
+                        E-mail: <a href="mailto:email@dominio.com"
+                            class="text-decoration-none text-dark">email@dominio.com</a><br>
+                        Telefone: <a href="phone:28999990000" class="text-decoration-none text-dark">(87) 99999-0000</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        
+    </div>
+
+    <script src="/ppo-webfeira/node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
 </body>
+
+</html>
