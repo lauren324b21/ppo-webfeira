@@ -64,10 +64,11 @@
         //adicionar ao carrinho
         $idProduto = (int) $_GET['adicionar'];
         if(isset($items[$idProduto])){
-            if(isset($_SESSION[$idProduto])){
-                $_SESSION['carrinho'][$idProduto]['quantidade']++;
+            if(isset($_SESSION['carrinho'][$idProduto])){
+                $_SESSION['carrinho'][$idProduto]['quantidade']+1;
             }else{
-                $_SESSION['carrinho'][$idProduto] = array('quantidade'=>1,'nome'=>$items[$idProduto][
+                $_SESSION['carrinho'][$idProduto] = array('quantidade'=>1,'nome'=>$items[
+                    $idProduto][
                     'nome'],'preco'=>$items[$idProduto][
                     'preco']);
             }
@@ -81,6 +82,7 @@
 
     <h2 class="title">Carrinho:</h2>
 <?php
+    
     foreach($_SESSION['carrinho'] as $key => $value){
         //nome
         //quantidade
