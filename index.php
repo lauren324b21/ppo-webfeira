@@ -1,7 +1,22 @@
 <?php include_once("conexao.php");
-$result_produtos = "SELECT * FROM produto";
+$pagina = (isset($_GET['pagina']))? $_GET['pagina'] : 1;
+
+$result_produto = "SELECT * FROM produto";
+$resultado_produto = mysqli_query($conexao, $result_produto);
+
+$total_produtos = mysqli_num_rows($resultado_produto);
+
+$quantidade_pg = 2;
+
+$num_pagina = ceil($total_produtos/$quantidade_pg);
+
+$inicio = ($quantidade_pg*$pagina)-$quantidade_pg;
+
+$result_produtos = "SELECT * FROM produto limit $inicio, $quantidade_pg";
 $resultado_produtos = mysqli_query($conexao, $result_produtos);
+$total_produtos = mysqli_num_rows($resultado_produtos);
 ?>
+
 <!doctype html>
 <html lang="pt-br">
 
@@ -55,8 +70,6 @@ $resultado_produtos = mysqli_query($conexao, $result_produtos);
                                 <a href="login.html" class="nav-link text-white">Entrar</a>
                             </li>
                             <li class="nav-item">
-                                <span class="badge rounded-pill bg-light text-danger position-absolute ms-4 mt-0"
-                                    title="5 produto(s) no carrinho"><small>5</small></span>
                                 <a href="carrinho.html" class="nav-link text-white">
                                     <svg class="bi" width="24" height="24" fill="currentColor">
                                         <use xlink:href="/bi.svg#basket2" />
@@ -121,33 +134,41 @@ $resultado_produtos = mysqli_query($conexao, $result_produtos);
                                     <option>Ordenar pelo menor preço</option>
                                     <option>Ordenar pelo maior preço</option>
                                 </select>
-                            </form>
+                            </form>                          
+                            <?php
+                                $pagina_anterior = $pagina-1;
+                                $pagina_posterior = $pagina+1;
+                            ?>
                             <nav class="d-inline-block me-3">
                                 <ul class="pagination pagination-sm my-0">
                                     <li class="page-item">
-                                        <a class="page-link" href="#">1</a>
+                                    <?php
+                                    if($pagina_anterior != 0) { ?>
+                                        <a class="page-link" href="index.php?pagina=<?php echo $pagina_anterior; ?>" aria-label="Previous"> 
+                                        <span aria-hidden="true">&laquo;</span>
+                                        </a> 
+                                    <?php } ?>
                                     </li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="#">2</a>
+                                    <?php 
+					                    //Apresentar a paginacao
+					                    for($i = 1; $i < $num_pagina + 1; $i++){ ?>
+						                <li class="page-item">
+                                        <a class="page-link" href="index.php?pagina=<?php echo $i; ?>"><?php echo $i; ?></a>
+                                        </li>
+					                    <?php } ?>
                                     </li>
-                                    <li class="page-item disabled">
-                                        <a class="page-link" href="#">3</a>
-                                    </li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="#">4</a>
-                                    </li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="#">5</a>
-                                    </li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="#">6</a>
-                                    </li>
+                                    <?php
+                                    if($pagina_posterior <= $num_pagina) { ?>
+                                        <a class="page-link" href="index.php?pagina=<?php echo $pagina_posterior; ?>" aria-label="Previous"> 
+                                        <span aria-hidden="true">&raquo;</span>
+                                        </a> 
+                                    <?php  } ?>
+                                </li> 
                                 </ul>
                             </nav>
                         </div>
                     </div>
                 </div>
-
                 <hr mt-3>
 
                 <div class="row g-3">
@@ -192,26 +213,35 @@ $resultado_produtos = mysqli_query($conexao, $result_produtos);
                                     <option>Ordenar pelo maior preço</option>
                                 </select>
                             </form>
+                            <?php
+                                $pagina_anterior = $pagina-1;
+                                $pagina_posterior = $pagina+1;
+                            ?>
                             <nav class="d-inline-block me-3">
                                 <ul class="pagination pagination-sm my-0">
                                     <li class="page-item">
-                                        <a class="page-link" href="#">1</a>
+                                    <?php
+                                    if($pagina_anterior != 0) { ?>
+                                        <a class="page-link" href="index.php?pagina=<?php echo $pagina_anterior; ?>" aria-label="Previous"> 
+                                        <span aria-hidden="true">&laquo;</span>
+                                        </a> 
+                                    <?php } ?>
                                     </li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="#">2</a>
+                                    <?php 
+					                    //Apresentar a paginacao
+					                    for($i = 1; $i < $num_pagina + 1; $i++){ ?>
+						                <li class="page-item">
+                                        <a class="page-link" href="index.php?pagina=<?php echo $i; ?>"><?php echo $i; ?></a>
+                                        </li>
+					                    <?php } ?>
                                     </li>
-                                    <li class="page-item disabled">
-                                        <a class="page-link" href="#">3</a>
-                                    </li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="#">4</a>
-                                    </li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="#">5</a>
-                                    </li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="#">6</a>
-                                    </li>
+                                    <?php
+                                    if($pagina_posterior <= $num_pagina) { ?>
+                                        <a class="page-link" href="index.php?pagina=<?php echo $pagina_posterior; ?>" aria-label="Previous"> 
+                                        <span aria-hidden="true">&raquo;</span>
+                                        </a> 
+                                    <?php  } ?>
+                                </li> 
                                 </ul>
                             </nav>
                         </div>

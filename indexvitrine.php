@@ -5,8 +5,29 @@
  * porém lembre -se de conceder os créditos ao desenvolvedor.
  *-->
 <?php include_once("conexao.php");
-$result_cursos = "SELECT * FROM cursos";
+//Verificar se está sendo passado na URL a página atual, senao é atribuido a pagina 
+$pagina = (isset($_GET['pagina']))? $_GET['pagina'] : 1;
+
+//Selecionar todos os cursos da tabela
+$result_curso = "SELECT * FROM cursos";
+$resultado_curso = mysqli_query($conn, $result_curso);
+
+//Contar o total de cursos
+$total_cursos = mysqli_num_rows($resultado_curso);
+
+//Seta a quantidade de cursos por pagina
+$quantidade_pg = 6;
+
+//calcular o número de pagina necessárias para apresentar os cursos
+$num_pagina = ceil($total_cursos/$quantidade_pg);
+
+//Calcular o inicio da visualizacao
+$incio = ($quantidade_pg*$pagina)-$quantidade_pg;
+
+//Selecionar os cursos a serem apresentado na página
+$result_cursos = "SELECT * FROM cursos limit $incio, $quantidade_pg";
 $resultado_cursos = mysqli_query($conn, $result_cursos);
+$total_cursos = mysqli_num_rows($resultado_cursos);
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -35,6 +56,40 @@ $resultado_cursos = mysqli_query($conn, $result_cursos);
 					</div>
 				<?php } ?>
 			</div>
+			<?php
+				//Verificar a pagina anterior e posterior
+				$pagina_anterior = $pagina - 1;
+				$pagina_posterior = $pagina + 1;
+			?>
+			<nav class="text-center">
+				<ul class="pagination">
+					<li>
+						<?php
+						if($pagina_anterior != 0){ ?>
+							<a href="index.php?pagina=<?php echo $pagina_anterior; ?>" aria-label="Previous">
+								<span aria-hidden="true">&laquo;</span>
+							</a>
+						<?php }else{ ?>
+							<span aria-hidden="true">&laquo;</span>
+					<?php }  ?>
+					</li>
+					<?php 
+					//Apresentar a paginacao
+					for($i = 1; $i < $num_pagina + 1; $i++){ ?>
+						<li><a href="index.php?pagina=<?php echo $i; ?>"><?php echo $i; ?></a></li>
+					<?php } ?>
+					<li>
+						<?php
+						if($pagina_posterior <= $num_pagina){ ?>
+							<a href="index.php?pagina=<?php echo $pagina_posterior; ?>" aria-label="Previous">
+								<span aria-hidden="true">&raquo;</span>
+							</a>
+						<?php }else{ ?>
+							<span aria-hidden="true">&raquo;</span>
+					<?php }  ?>
+					</li>
+				</ul>
+			</nav>
 		</div>
 		
 		
