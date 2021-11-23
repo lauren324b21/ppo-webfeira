@@ -6,7 +6,7 @@ $resultado_produto = mysqli_query($conexao, $result_produto);
 
 $total_produtos = mysqli_num_rows($resultado_produto);
 
-$quantidade_pg = 2;
+$quantidade_pg = 6;
 
 $num_pagina = ceil($total_produtos/$quantidade_pg);
 
@@ -42,6 +42,7 @@ $total_produtos = mysqli_num_rows($resultado_produtos);
 </head>
 
 <body>
+
     <div class="d-flex flex-column wrapper">
         <nav class="navbar navbar-expand-lg navbar-dark bg-success border-bottom shadow-sm mb-3">
             <div class="container">
@@ -191,7 +192,7 @@ $total_produtos = mysqli_num_rows($resultado_produtos);
                                 </p>
                             </div>
                             <div class="card-footer">
-                                <a href="carrinho.html" class="btn btn-success mt-2 d-block">
+                                <a href="carrinho.php?add=carrinho&id='.$row_produtos['codigo'].'" class="btn btn-success mt-2 d-block">
                                     Adicionar ao Carrinho
                                 </a>
                                 <small class="text-success"><?php echo $row_produtos['unidade']; ?> unidades em estoque</small>
