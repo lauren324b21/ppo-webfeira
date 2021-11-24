@@ -1,4 +1,5 @@
-<?php
+<?php include_once("conexao.php");
+    
     session_start();
     if(!isset($_SESSION['itens'])){
         $_SESSION['itens'] = array();
@@ -11,7 +12,20 @@
         } else {
             $_SESSION['itens'][$idProduto] += 1;
         }
-    }  
+    }
+    
+     if(count($_SESSION['itens']) == 0){ 
+        echo 'carrinho vazio';
+    } else {
+        foreach($_SESSION['itens'] as $idProduto => $unidade){
+            $select = $conexao -> prepare("SELECT * FROM produto WHERE codigo=$idProduto");
+            $select -> bind_param(1,$idProduto);
+            $select -> execute();
+            $produtos = $select -> fetchAll();
+            echo 
+                produtos[0]["nome"].'<br/>';
+        }
+    } 
 ?>
 
 <!doctype html>
