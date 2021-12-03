@@ -5,6 +5,7 @@
         $_SESSION['carrinho'] = array();
     }
 
+    //Adicionar
     if(isset($_GET['acao'])){
         if($_GET['acao'] == 'add'){
             $codigo = intval($_GET['codigo']);
@@ -14,31 +15,18 @@
                 $_SESSION['carrinho'][$codigo] += 1;
             }
         }
-    }
+    
+        //Remover
+        if($_GET['acao'] == 'del'){
+            $codigo = intval($_GET['codigo']);
+            if(isset($_SESSION['carrinho'][$codigo])){
+                unset($_SESSION['carrinho'][$codigo]);
+            }
+        }
 
     print_r($_SESSION['carrinho']);
-    
-    /* if(isset($_GET['add']) && $_GET['add'] == "carrinho"){
-        $idProduto = $_GET['codigo'];
-        if(!isset ($_SESSION['itens'][$idProduto])){
-            $_SESSION['itens'][$idProduto] = 1;
-        } else {
-            $_SESSION['itens'][$idProduto] += 1;
-        }
     }
     
-     if(count($_SESSION['itens']) == 0){ 
-        echo 'carrinho vazio';
-    } else {
-        foreach($_SESSION['itens'] as $idProduto => $unidade){
-            $select = $conexao -> prepare("SELECT * FROM produto WHERE codigo=$idProduto");
-            $select -> bind_param(1,$idProduto);
-            $select -> execute();
-            $produtos = $select -> fetchAll();
-            echo 
-                produtos[0]["nome"].'<br/>';
-        }
-    }  */
 ?>
 
 <!doctype html>
@@ -152,9 +140,10 @@
                                     <button class="btn btn-outline-dark btn-sm" type="button">
                                         <i class="bi-caret-up" style="font-size: 16px; line-height: 16px;"></i>
                                     </button>
-                                    <button class="btn btn-outline-success border-dark btn-sm" type="button">
+                                    <?php echo '<button href="?acao=del&codigo='.$row_produtos['codigo'].'?" class="btn btn-outline-success border-dark btn-sm" type="button">
                                         <i class="bi-trash" style="font-size: 16px; line-height: 16px;"></i>
-                                    </button>
+                                    </button>' ?>
+                                    
                                 </div>
                                 <div class="text-end mt-2">
                                     <small class="text-secondary">Valor kg: <?php echo number_format($row_produtos['valor'], 2, ',', '.'); ?></small><br>
