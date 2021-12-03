@@ -122,9 +122,10 @@ $total_produtos = mysqli_num_rows($resultado_produtos);
             <div class="container">
                 <div class="row">
                     <div class="col-12 col-md-5">
+                    <form method="POST" action="pesquisar.php">
                         <form class="justify-content-center justify-content-md-start mb-3 mb-md-0">
                             <div class="input-group input-group-sm">
-                                <input type="text" class="form-control" placeholder="Digite aqui o que procura">
+                                <input type="text" name="pesquisar" class="form-control" placeholder="Digite aqui o que procura">
                                 <button class="btn btn-success">Buscar</button>
                             </div>
                         </form>
@@ -248,6 +249,7 @@ $total_produtos = mysqli_num_rows($resultado_produtos);
                                 </ul>
                             </nav>
                         </div>
+                        </form>
                     </div>
                 </div>
             </div>
