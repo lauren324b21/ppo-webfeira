@@ -183,7 +183,7 @@ $total_produtos = mysqli_num_rows($resultado_produtos);
                                 <i class="bi-suit-heart" style="font-size: 24px; line-height: 24px;"></i>
                             </a>
                             <a href="produto.html">
-                                <img src="img/produtos/000001.jpg" class="card-img-top">
+                            <?php echo '<img src="'.$row_produtos['imagem'].'" class="card-img-top" />' ?>
                             </a>
                             <div class="card-header">
                             <?php echo $row_produtos['valor']; ?>
@@ -195,9 +195,9 @@ $total_produtos = mysqli_num_rows($resultado_produtos);
                                 </p>
                             </div>
                             <div class="card-footer">
-                                <a href="carrinho.php?add=carrinho&codigo=<?php $row_produtos['codigo']?>" class="btn btn-success mt-2 d-block">
+                            <?php echo '<a href="carrinho.php?acao=add&codigo='.$row_produtos['codigo'].'?>" class="btn btn-success mt-2 d-block">
                                     Adicionar ao Carrinho
-                                </a>
+                                </a>' ?>
                                 <small class="text-success"><?php echo $row_produtos['unidade']; ?> unidades em estoque</small>
                             </div>
                         </div>
