@@ -64,16 +64,19 @@
                 </div>
             </div>
         </nav>
-
+        
+        <main class="flex-fill">
+        <div class="container">
         <h1>Informe seus dados</h1>
-        <form method="post" action="processa.php">
+        <hr>
+        <form class="mt-3" method="post" action="processa.php">
             <div class="input-field">
             <div class="col-sm-12 col-md-6">
                 <fieldset class="row gx-3">
                     <legend>Dados Pessoais</legend>
-                        <label for="nome">
+                        <label class="form-label" for="nome">
                         <span>Nome</span>
-                        <input type="text" id="nome" name="nome" maxlength="40" required autofocus>
+                        <input  class="form-control" type="text" id="nome" name="nome" maxlength="40" required autofocus>
                         </label>
 
                         <label for="cpf">
@@ -110,15 +113,17 @@
                         <input type="password" id="senha" name="senha" maxlength="30" required>
                         </label>
                 </fieldset>
+                </hr>
                 <button id="button">Cadastrar</button>
         </form>
-        
+    </div>
+    </main>
         
         <main class="flex-fill">
         <div class="container">
                 <h1>Informe seus dados</h1>
                 <hr>
-                <form class="mt-3">
+                <form class="mt-3"  method="post" action="processa.php">
                     <div class="row justify-content-center">
                         <div class="col-sm-12 col-md-6">
                             <fieldset class="row gx-3">
@@ -192,7 +197,7 @@
                     <div class="mb-3 text-left">
                         <a class="btn btn-lg btn-light btn-outline-success" href="/">Cancelar</a>
                         <input type="button" value="Criar meu cadastro" class="btn btn-lg btn-success" 
-                            method="post" >
+                            method="post">
                     </div>
                 </form>
             </div>
