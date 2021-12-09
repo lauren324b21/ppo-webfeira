@@ -64,58 +64,6 @@
                 </div>
             </div>
         </nav>
-        
-        <main class="flex-fill">
-        <div class="container">
-        <h1>Informe seus dados</h1>
-        <hr>
-        <form class="mt-3" method="post" action="processa.php">
-            <div class="input-field">
-            <div class="col-sm-12 col-md-6">
-                <fieldset class="row gx-3">
-                    <legend>Dados Pessoais</legend>
-                        <label class="form-label" for="nome">
-                        <span>Nome</span>
-                        <input  class="form-control" type="text" id="nome" name="nome" maxlength="40" required autofocus>
-                        </label>
-
-                        <label for="cpf">
-                        <span>CPF</span>
-                        <input type="number" id="cpf" name="cpf" maxlength="11" required>
-                        </label>
-
-                        <label for="nascimento">
-                        <span>Data de nascimento</span>
-                        <input type="date" id="nascimento" name="nascimento" required>
-                        </label>
-                </fieldset>       
-                <fieldset class="row gx-3">
-                    <legend>Contatos</legend>
-                        <label for="email">
-                        <span>E-mail</span>
-                        <input type="email" id="email" name="email" maxlength="50" required>
-                        </label>
-
-                        <label for="telefone">
-                        <span>Telefone</span>
-                        <input type="tel" id="telefone" name="telefone" maxlength="11" required>
-                        </label>
-                        
-                        <label for="endereco">
-                        <span>Endereço</span>
-                        <input type="text" id="endereco" name="endereco" maxlength="40" required>
-                        </label>
-                </fieldset>
-                <fieldset class="row gx-3">
-                    <legend>Senha de Acesso</legend>
-                        <label for="senha">
-                        <span>Senha</span>
-                        <input type="password" id="senha" name="senha" maxlength="30" required>
-                        </label>
-                </fieldset>
-                </hr>
-                <button id="button">Cadastrar</button>
-        </form>
     </div>
     </main>
         
@@ -195,9 +143,8 @@
                         </label>
                     </div>
                     <div class="mb-3 text-left">
-                        <a class="btn btn-lg btn-light btn-outline-success" href="/">Cancelar</a>
-                        <input type="button" value="Criar meu cadastro" class="btn btn-lg btn-success" 
-                            method="post">
+                        <button id="button" class="btn btn-lg btn-success" 
+                           >Criar meu cadastro</button>
                     </div>
                 </form>
             </div>

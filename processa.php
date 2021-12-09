@@ -34,7 +34,7 @@
         <?php
             if($linhas == 1){
             print "Cadastro efetuado com Sucesso!";
-            header('Location: loginCopy.php');
+            header('Location: login.php');
 
             } else {
                 print "Houve um erro! <br>Email ou cpf já existentes";
