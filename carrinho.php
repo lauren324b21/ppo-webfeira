@@ -109,6 +109,8 @@
                             $qr    = mysqli_query($conexao,$sql) or die (mysqli_error());
                             $row_produtos    = mysqli_fetch_assoc($qr);
 
+                            $qtd = $qtd+1;
+                        
                             $nome  = $row_produtos['nome'];
                             $valor = number_format($row_produtos['valor'], 2, ',', '.');
                             $sub   = number_format($row_produtos['valor'] * $qtd , 2, ',', '.');
@@ -133,16 +135,16 @@
                             <div
                                 class="col-6 offset-6 col-sm-6 offset-sm-6 col-md-4 offset-md-8 col-lg-3 offset-lg-0 col-xl-2 align-self-center mt-3">
                                 <div class="input-group">
-                                    <button class="btn btn-outline-dark btn-sm" type="button">
+                                    <button class="btn btn-outline-dark btn-sm" type="button" onclick="">
                                         <i class="bi-caret-down" style="font-size: 16px; line-height: 16px;"></i>
                                     </button>
                                     <input type="text" class="form-control text-center border-dark" value="<?php echo $qtd; ?>">
-                                    <button class="btn btn-outline-dark btn-sm" type="button">
+                                    <button class="btn btn-outline-dark btn-sm" type="button" onclick="<?php echo '$qtdmais' ?>">
                                         <i class="bi-caret-up" style="font-size: 16px; line-height: 16px;"></i>
                                     </button>
-                                    <?php echo '<button href="?acao=del&codigo='.$row_produtos['codigo'].'?" class="btn btn-outline-success border-dark btn-sm" type="button">
-                                        <i class="bi-trash" style="font-size: 16px; line-height: 16px;"></i>
-                                    </button>' ?>
+                                    <button class="btn btn-outline-success border-dark btn-sm" type="button">
+                                        <?php echo '<a href="?acao=del&codigo='.$row_produtos['codigo'].'" class="bi-trash" style="font-size: 16px; line-height: 16px;"></a>'?>
+                                    </button> 
                                     
                                 </div>
                                 <div class="text-end mt-2">
