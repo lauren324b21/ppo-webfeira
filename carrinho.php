@@ -24,7 +24,24 @@
             }
         }
 
-    print_r($_SESSION['carrinho']);
+        //Alterar Quantidade
+        if($_GET['acao']=='up'){
+            if(is_array($_POST['prod'])){
+                foreach($_POST['prod'] as $codigo => $qtd){
+                    $codigo = intval($codigo);
+                    $qtd    = intval($qtd);
+                    if(!empty($qtd) || $qtd <> 0){
+                       $_SESSION['carrinho'][$codigo] = $qtd; 
+                    } else {
+                        unset($_SESSION['carrinho'][$codigo]);
+                    }
+                }
+            }
+        }
+       
+
+
+    //print_r($_SESSION['carrinho']);
     }
     
 ?>
@@ -97,6 +114,7 @@
         </nav>
 
         <main class="flex-fill">
+        <form action="?acao=up" method="post">
             <div class="container">
                 <h1>Carrinho de Compras</h1>
                 <?php
@@ -108,8 +126,6 @@
                             $sql   = "SELECT * FROM produto WHERE codigo='$codigo'";
                             $qr    = mysqli_query($conexao,$sql) or die (mysqli_error());
                             $row_produtos    = mysqli_fetch_assoc($qr);
-
-                            $qtd = $qtd+1;
                         
                             $nome  = $row_produtos['nome'];
                             $valor = number_format($row_produtos['valor'], 2, ',', '.');
@@ -138,15 +154,15 @@
                                     <button class="btn btn-outline-dark btn-sm" type="button" onclick="">
                                         <i class="bi-caret-down" style="font-size: 16px; line-height: 16px;"></i>
                                     </button>
-                                    <input type="text" class="form-control text-center border-dark" value="<?php echo $qtd; ?>">
+                                    <input type="text" name="<?php echo 'prod['.$codigo.']'?>" class="form-control text-center border-dark" value="<?php echo $qtd; ?>">
                                     <button class="btn btn-outline-dark btn-sm" type="button" onclick="<?php echo '$qtdmais' ?>">
                                         <i class="bi-caret-up" style="font-size: 16px; line-height: 16px;"></i>
                                     </button>
                                     <button class="btn btn-outline-success border-dark btn-sm" type="button">
                                         <?php echo '<a href="?acao=del&codigo='.$row_produtos['codigo'].'" class="bi-trash" style="font-size: 16px; line-height: 16px;"></a>'?>
-                                    </button> 
-                                    
+                                    </button>    
                                 </div>
+                                <input type="submit"  class="form-control text-center border-dark" value="Atualizar">
                                 <div class="text-end mt-2">
                                     <small class="text-secondary">Valor kg: <?php echo number_format($row_produtos['valor'], 2, ',', '.'); ?></small><br>
                                     <span class="text-dark">Valor Item: <?php echo number_format($row_produtos['valor'] * $qtd , 2, ',', '.'); ?></span>
@@ -169,6 +185,7 @@
                     </li>
                 </ul>
             </div>
+            </form>
         </main>
 
         <footer class="border-top text-muted bg-light">
