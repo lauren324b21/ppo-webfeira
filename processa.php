@@ -1,6 +1,8 @@
 <?php
     include_once("conexao.php");
     
+    session_start();
+    
     $nome = $_POST['nome'];
     $email = $_POST['email'];
     $senha = $_POST['senha'];
@@ -8,6 +10,8 @@
     $telefone = $_POST['telefone'];
     $endereco = $_POST['endereco'];
    
+    $_SESSION['nome'] = $nome;
+    
 
     $sql = "insert into cliente (nome,email,senha,cpf,telefone,endereco) 
     values ('$nome','$email','$senha','$cpf','$telefone','$endereco')";

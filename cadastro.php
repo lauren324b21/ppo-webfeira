@@ -125,7 +125,7 @@
                             <fieldset class="row gx-3">
                                 <legend>Senha de Acesso</legend>
                                 <div class="form-floating mb-3 col-lg-6">
-                                    <input class="form-control"type="password" id="senha" name="senha" maxlength="30" required placeholder=" " />
+                                    <input class="form-control" type="password" id="senha" name="senha" maxlength="8" required placeholder=" " />
                                     <label for="senha">Senha</label>
                                 </div>
                                 <div class="form-floating mb-3 col-lg-6">

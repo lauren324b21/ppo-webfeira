@@ -1,4 +1,7 @@
 <?php include_once("conexao.php");
+ 
+ session_start();
+
 $pagina = (isset($_GET['pagina']))? $_GET['pagina'] : 1;
 
 $result_produto = "SELECT * FROM produto";
@@ -67,7 +70,9 @@ $total_produtos = mysqli_num_rows($resultado_produtos);
                     <div class="align-self-end">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a href="cadastro.html" class="nav-link text-white">Quero Me Cadastrar</a>
+                                <a href="/cliente_pedidos.html" class="nav-link text-white">Logado como 
+                            
+                                </a>
                             </li>
                             <li class="nav-item">
                                 <a href="login.html" class="nav-link text-white">Entrar</a>

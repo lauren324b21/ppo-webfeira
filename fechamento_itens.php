@@ -4,48 +4,7 @@
     if(!isset($_SESSION['carrinho'])){
         $_SESSION['carrinho'] = array();
     }
-
-    //Adicionar
-    if(isset($_GET['acao'])){
-        if($_GET['acao'] == 'add'){
-            $codigo = intval($_GET['codigo']);
-            if(!isset($_SESSION['carrinho'][$codigo])){
-                $_SESSION['carrinho'][$codigo] = 1;
-            } else { 
-                $_SESSION['carrinho'][$codigo] += 1;
-            }
-        }
-    
-        //Remover
-        if($_GET['acao'] == 'del'){
-            $codigo = intval($_GET['codigo']);
-            if(isset($_SESSION['carrinho'][$codigo])){
-                unset($_SESSION['carrinho'][$codigo]);
-            }
-        }
-
-        //Alterar Quantidade
-        if($_GET['acao']=='up'){
-            if(is_array($_POST['prod'])){
-                foreach($_POST['prod'] as $codigo => $qtd){
-                    $codigo = intval($codigo);
-                    $qtd    = intval($qtd);
-                    if(!empty($qtd) || $qtd <> 0){
-                       $_SESSION['carrinho'][$codigo] = $qtd; 
-                    } else {
-                        unset($_SESSION['carrinho'][$codigo]);
-                    }
-                }
-            }
-        }
-       
-
-
-    //print_r($_SESSION['carrinho']);
-    }
-    
 ?>
-
 <!doctype html>
 <html lang="pt-br">
 
@@ -66,45 +25,41 @@
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="node_modules/bootstrap-icons/font/bootstrap-icons.css">
     <link rel="stylesheet" href="css/index.css">
-    
-    <title>Web Feira :: Carrinho de Compras</title>
+
+    <title>WebFeira :: Fechamento da Compra</title>
 </head>
 
 <body>
     <div class="d-flex flex-column wrapper">
         <nav class="navbar navbar-expand-lg navbar-dark bg-success border-bottom shadow-sm mb-3">
             <div class="container">
-                <a class="navbar-brand" href="/">
-                    <strong>Web Feira</strong>
-                </a>
+                <a class="navbar-brand" href="/"><b>Web Feira</b></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target=".navbar-collapse">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse">
+                <div class="collapse navbar-collapse">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a href="index.html" class="nav-link text-white">Principal</a>
+                            <a class="nav-link text-white" href="/index.html">Principal</a>
                         </li>
                         <li class="nav-item">
-                            <a href="contato.html" class="nav-link text-white">Contato</a>
+                            <a class="nav-link text-white" href="/contato.html">Contato</a>
                         </li>
                     </ul>
                     <div class="align-self-end">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a href="cadastro.html" class="nav-link text-white">Quero Me Cadastrar</a>
+                                <a href="/cliente_pedidos.html" class="nav-link text-white">Logado como <b>Laurinha Lero</b></a>
                             </li>
                             <li class="nav-item">
-                                <a href="login.html" class="nav-link text-white">Entrar</a>
+                                <a href="/login.html" class="nav-link text-white">Sair</a>
                             </li>
                             <li class="nav-item">
                                 <span class="badge rounded-pill bg-light text-success position-absolute ms-4 mt-0"
                                     title="5 produto(s) no carrinho"><small>5</small></span>
-                                <a href="carrinho.html" class="nav-link text-white">
-                                    <svg class="bi" width="24" height="24" fill="currentColor">
-                                        <use xlink:href="/bi.svg#basket2" />
-                                    </svg>
+                                <a href="/carrinho.html" class="nav-link text-white">
+                                    <i class="bi-basket2" style="font-size:24px;line-height:24px;"></i>
                                 </a>
                             </li>
                         </ul>
@@ -114,9 +69,9 @@
         </nav>
 
         <main class="flex-fill">
-        <form action="?acao=up" method="post">
             <div class="container">
-                <h1>Carrinho de Compras</h1>
+                <h1>Confira os Itens</h1>
+                <h4>Confira os itens e clique em <b>Continuar</b> para prosseguir para a <b>seleção do endereço de entrega</b>.</h4>
                 <?php
                 $total = 0;
                     if(count($_SESSION['carrinho']) == 0){
@@ -152,26 +107,13 @@
                                 <h5>
                                 <?php echo $row_produtos['descricao']; ?>
                                 </h5>
+                                
+                                <b><?php echo $qtd;?>  unidade(s) <br>
+                                <?php echo number_format($row_produtos['valor'] * $qtd , 2, ',', '.'); ?>
+                                </b> 
                             </div>
                             <div
                                 class="col-6 offset-6 col-sm-6 offset-sm-6 col-md-4 offset-md-8 col-lg-3 offset-lg-0 col-xl-2 align-self-center mt-3">
-                                <div class="input-group">
-                                    <button class="btn btn-outline-dark btn-sm" type="button" onclick="">
-                                        <i class="bi-caret-down" style="font-size: 16px; line-height: 16px;"></i>
-                                    </button>
-                                    <input type="text" name="<?php echo 'prod['.$codigo.']'?>" class="form-control text-center border-dark" value="<?php echo $qtd; ?>">
-                                    <button class="btn btn-outline-dark btn-sm" type="button" onclick="<?php echo '$qtdmais' ?>">
-                                        <i class="bi-caret-up" style="font-size: 16px; line-height: 16px;"></i>
-                                    </button>
-                                    <button class="btn btn-outline-success border-dark btn-sm" type="button">
-                                        <?php echo '<a href="?acao=del&codigo='.$row_produtos['codigo'].'" class="bi-trash" style="font-size: 16px; line-height: 16px;"></a>'?>
-                                    </button>    
-                                </div>
-                                <input type="submit"  class="form-control text-center border-dark" value="Atualizar">
-                                <div class="text-end mt-2">
-                                    <small class="text-secondary">Valor kg: <?php echo number_format($row_produtos['valor'], 2, ',', '.'); ?></small><br>
-                                    <span class="text-dark">Valor Item: <?php echo number_format($row_produtos['valor'] * $qtd , 2, ',', '.'); ?></span>
-                                </div>
                             </div>
                         </div>
                     </li>
@@ -180,57 +122,56 @@
                         }
                     }
                 ?>
-                            <a href="index.php" class="btn btn-outline-success btn-lg">
-                                Continuar Comprando                            
-                            </a>
-                            <?php 
-                                if($total <> 0){
-                                    $total = number_format($total, 2, ',', '.');
-                                    echo '<a class="btn btn-outline-success btn-lg">Valor total: '.$total.'</a>';
-                                } else {
-                                   
-                                }
-                                
-                            ?>
-                            <a href="fechamento_itens.php" class="btn btn-success btn-lg ms-2 mt-xs-3">Fechar Compra</a>
-                        </div>
-                    </li>
-                </ul>
+                
+                <div class="text-end">
+                    <a href="carrinho.php" class="btn btn-outline-success btn-lg mb-3">
+                                    Voltar ao Carrinho
+                    </a>
+                    <?php 
+                        if($total <> 0){
+                            $total = number_format($total, 2, ',', '.');
+                            echo '<a class="btn btn-outline-success btn-lg mb-3">Valor total: '.$total.'</a>';
+                        } else {
+                                    
+                        }              
+                    ?>
+                    <a href="fechamento_endereco.html" class="btn btn-success btn-lg ms-2 mb-3">Continuar</a>
+                </div>
             </div>
-            </form>
         </main>
 
         <footer class="border-top text-muted bg-light">
             <div class="container">
                 <div class="row py-3">
                     <div class="col-12 col-md-4 text-center">
-                        &copy; 2020 - Web Feira Ltda ME<br>
-                        Rua Virtual Inexistente, 171, Compulândia/PC <br>
-                        CPNJ 99.999.999/0001-99
+                        &copy; 2020 - WebFeira Ltda ME<br>
+                        Sítio Neves - Zona Rural, SN, Jucati/PE <br>
+                        CPNJ 32.001.533/0001-84
                     </div>
                     <div class="col-12 col-md-4 text-center">
-                        <a href="privacidade.html" class="text-decoration-none text-dark">
+                        <a href="/privacidade.html" class="text-decoration-none text-dark">
                             Política de Privacidade
                         </a><br>
-                        <a href="termos.html" class="text-decoration-none text-dark">
+                        <a href="/termos.html" class="text-decoration-none text-dark">
                             Termos de Uso
                         </a><br>
-                        <a href="quemsomos.html" class="text-decoration-none text-dark">
+                        <a href="/quemsomos.html" class="text-decoration-none text-dark">
                             Quem Somos
                         </a><br>
-                        <a href="trocas.html" class="text-decoration-none text-dark">
+                        <a href="/trocas.html" class="text-decoration-none text-dark">
                             Trocas e Devoluções
                         </a>
                     </div>
                     <div class="col-12 col-md-4 text-center">
-                        <a href="contato.html" class="text-decoration-none text-dark">
+                        <a href="/contato.html" class="text-decoration-none text-dark">
                             Contato pelo Site
                         </a><br>
                         E-mail: <a href="mailto:email@dominio.com" class="text-decoration-none text-dark">
                             email@dominio.com
                         </a><br>
-                        Telefone: <a href="phone:28999990000" class="text-decoration-none text-dark">
-                            (28) 99999-0000
+                        Telefone: <a href="phone:87981189959" class="text-decoration-none text-dark">
+                            
+                                (87) 98118-9959
                         </a>
                     </div>
                 </div>
