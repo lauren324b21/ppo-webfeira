@@ -19,7 +19,6 @@ $result_produtos = "SELECT * FROM produto limit $inicio, $quantidade_pg";
 $resultado_produtos = mysqli_query($conexao, $result_produtos);
 $total_produtos = mysqli_num_rows($resultado_produtos);
 
-
 ?>
 
 <!doctype html>
@@ -191,7 +190,7 @@ $total_produtos = mysqli_num_rows($resultado_produtos);
                             <?php echo '<img src="'.$row_produtos['imagem'].'" class="card-img-top" />' ?>
                             </a>
                             <div class="card-header">
-                            <?php echo $row_produtos['valor']; ?>
+                            <?php echo 'R$ '.number_format($row_produtos['valor'], 2, ',', '.').''; ?>
                             </div>
                             <div class="card-body">
                                 <h5 class="card-title"><?php echo $row_produtos['nome']; ?></h5>
