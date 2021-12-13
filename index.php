@@ -50,7 +50,7 @@ $total_produtos = mysqli_num_rows($resultado_produtos);
     <div class="d-flex flex-column wrapper">
         <nav class="navbar navbar-expand-lg navbar-dark bg-success border-bottom shadow-sm mb-3">
             <div class="container">
-                <a class="navbar-brand" href="/">
+                <a class="navbar-brand" href="index.php">
                     <strong>Web Feira</strong>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -60,7 +60,7 @@ $total_produtos = mysqli_num_rows($resultado_produtos);
                 <div class="navbar-collapse collapse">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a href="index.html" class="nav-link text-white">Principal</a>
+                            <a href="index.php" class="nav-link text-white">Principal</a>
                         </li>
                         <li class="nav-item">
                             <a href="contato.html" class="nav-link text-white">Contato</a>
@@ -69,18 +69,18 @@ $total_produtos = mysqli_num_rows($resultado_produtos);
                     <div class="align-self-end">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a href="/cliente_pedidos.html" class="nav-link text-white">Logado como 
+                                <a href="cliente_pedidos.html" class="nav-link text-white">Logado como 
                             
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="login.html" class="nav-link text-white">Entrar</a>
+                                <a href="login.php" class="nav-link text-white">Entrar</a>
                             </li>
                             <li class="nav-item">
-                                <a href="carrinho.html" class="nav-link text-white">
-                                    <svg class="bi" width="24" height="24" fill="currentColor">
-                                        <use xlink:href="/bi.svg#basket2" />
-                                    </svg>
+                                <a href="carrinho.php" class="nav-link text-white">
+                                    <i i class="bi-basket2" style="font-size:24px;line-height:24px;">
+                                        <use xlink:href="carrinho.php" />
+                                    </i>
                                 </a>
                             </li>
                         </ul>
