@@ -39,8 +39,7 @@
             }
         }
        
-
-
+       
     //print_r($_SESSION['carrinho']);
     }
     
@@ -126,6 +125,7 @@
                         
                         is_numeric($total);
                         foreach($_SESSION['carrinho'] as $codigo => $qtd){
+                            $_SESSION['qtd'] = $qtd;
                             $sql   = "SELECT * FROM produto WHERE codigo='$codigo'";
                             $qr    = mysqli_query($conexao,$sql) or die (mysqli_error());
                             $row_produtos    = mysqli_fetch_assoc($qr);
@@ -190,7 +190,7 @@
                                 } else {
                                    
                                 }
-                                
+                            $_SESSION['total'] = $total;    
                             ?>
                             <a href="fechamento_itens.php" class="btn btn-success btn-lg ms-2 mt-xs-3">Fechar Compra</a>
                         </div>

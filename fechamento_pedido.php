@@ -1,13 +1,6 @@
-<?php include_once("conexao.php");
-    
+
+<?php include_once('conexao.php');
     session_start();
-    if(!isset($_SESSION['carrinho'])){
-        $_SESSION['carrinho'] = array();
-    }
-    $email = $_SESSION['email'];
-    $sql   = "SELECT * FROM cliente WHERE email='$email'";
-    $qr    = mysqli_query($conexao,$sql) or die (mysqli_error());
-    $row_clientes    = mysqli_fetch_assoc($qr);
 ?>
 <!doctype html>
 <html lang="pt-br">
@@ -23,14 +16,14 @@
     <link rel="icon" type="image/png" sizes="16x16" href="img/favicon/favicon-16x16.png">
     <link rel="manifest" href="img/favicon/manifest.json">
     <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="/img/favicon/ms-icon-144x144.png">
+    <meta name="msapplication-TileImage" content="img/favicon/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
 
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="node_modules/bootstrap-icons/font/bootstrap-icons.css">
     <link rel="stylesheet" href="css/index.css">
 
-    <title>WebFeira :: Fechamento da Compra</title>
+    <title>Web Feira :: Fechamento da Compra</title>
 </head>
 
 <body>
@@ -78,76 +71,22 @@
                 </div>
             </div>
         </nav>
-
+ 
         <main class="flex-fill">
-            <div class="container">
-                <h1>Confira os Itens</h1>
-                <h4>Confira os itens e clique em <b>Continuar</b> para prosseguir para a <b>seleção do endereço de entrega</b>.</h4>
-                <?php
-                $total = 0;
-                    if(count($_SESSION['carrinho']) == 0){
-                        echo '<h5><a href="#" class="text-decoration-none text-success">
-                        Carrinho Vazio </a></h5>';
-                    } else {
-                        
-                        is_numeric($total);
-                        foreach($_SESSION['carrinho'] as $codigo => $qtd){
-                            $sql   = "SELECT * FROM produto WHERE codigo='$codigo'";
-                            $qr    = mysqli_query($conexao,$sql) or die (mysqli_error());
-                            $row_produtos    = mysqli_fetch_assoc($qr);
-                        
-                            $nome  = $row_produtos['nome'];
-                            $valor = number_format($row_produtos['valor'], 2, ',', '.');
-                            $sub   = number_format($row_produtos['valor'] * $qtd , 2, ',', '.');
-                            
-                            $total += $row_produtos ['valor'] * $qtd;
-                        ?>
-                            <ul class="list-group mb-3">
-                    <li class="list-group-item py-3">
-                        <div class="row g-3">
-                            <div class="col-4 col-md-3 col-lg-2">
-                                <a href="#">
-                                <?php echo '<img src="'.$row_produtos['imagem'].'" class="card-img-top" />' ?>
-                                </a>
-                            </div>
-                            <div class="col-8 col-md-9 col-lg-7 col-xl-8 text-left align-self-center">
-                                <h4>
-                                    <b><a href="#" class="text-decoration-none text-success">
-                                    <?php echo $row_produtos['nome']; ?></a></b>
-                                </h4>
-                                <h5>
-                                <?php echo $row_produtos['descricao']; ?>
-                                </h5>
-                                
-                                <b><?php echo $qtd;?>  unidade(s) <br>
-                                <?php echo number_format($row_produtos['valor'] * $qtd , 2, ',', '.'); ?>
-                                </b> 
-                            </div>
-                            <div
-                                class="col-6 offset-6 col-sm-6 offset-sm-6 col-md-4 offset-md-8 col-lg-3 offset-lg-0 col-xl-2 align-self-center mt-3">
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            <?php
-                        }
-                    }
-                ?>
-                
-                <div class="text-end">
-                    <a href="carrinho.php" class="btn btn-outline-success btn-lg mb-3">
-                                    Voltar ao Carrinho
-                    </a>
-                    <?php 
-                        if($total <> 0){
-                            $total = number_format($total, 2, ',', '.');
-                            echo '<a class="btn btn-outline-success btn-lg mb-3">Valor total: '.$total.'</a>';
-                        } else {
-                                    
-                        }              
-                    ?>
-                    <a href="fechamento_endereco.php" class="btn btn-success btn-lg ms-2 mb-3">Continuar</a>
-                </div>
+            <div class="container text-center">
+                <h1>Obrigado!</h1>
+                <hr>
+                <h3>Anote o número de seu pedido:</h3>
+                <h2 class="text-success"><b><?php echo $_SESSION['pedido'] ?></b></h2>
+                <p>Em até 2 horas, seu pedido será entregue. Qualquer dúvida sobre este pedido, entre em contato conosco e informe o número do pedido para que possamos te ajudar.</p>
+                <p>Tenha um ótimo dia!</p>
+                <p>
+                    Atenciosamente,<br>
+                    Equipe Web Feira
+                </p>
+                <p>
+                    <a href="index.php" class="btn btn-success btn-lg">Voltar à Página Principal</a>
+                </p>
             </div>
         </main>
 

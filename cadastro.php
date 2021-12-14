@@ -106,19 +106,25 @@
                             <fieldset class="row gx-3">
                                 <legend>Endereço</legend>
                                 <div class="form-floating mb-3 col-md-6 col-lg-4">
-                                    <input class="form-control" type="text" name="cep" placeholder=" " />
+                                    <input class="form-control" type="text" name="cep" required pattern="\d{5}-\d{3}" placeholder=" " />
                                     <label for="cep">CEP</label>
                                 </div>
-                                <div class="mb-3 col-md-6 col-lg-8 align-self-end">
-                                    <textarea class="form-control text-muted bg-light"
-                                        style="height: 58px; font-size: 14px;"
-                                        disabled>Digite o CEP para buscarmos o endereço.</textarea>
-                                </div>
                                 <div class="clearfix"></div>
-
+                                <div class="form-floating mb-3 col-md-4">
+                                    <input class="form-control"type="text" id="numero" name="numero" maxlength="40" required placeholder=" " />
+                                    <label for="txtComplemento">Número</label>
+                                </div>
                                 <div class="form-floating mb-3 col-md-8">
-                                    <input class="form-control"type="text" id="endereco" name="endereco" maxlength="40" required placeholder=" " />
-                                    <label for="txtComplemento">Endereço</label>
+                                    <input class="form-control"type="text" id="rua" name="rua" maxlength="40" required placeholder=" " />
+                                    <label for="txtComplemento">Rua</label>
+                                </div>
+                                <div class="form-floating mb-3 col-md-8">
+                                    <input class="form-control"type="text" id="cidade" name="cidade" maxlength="40" required placeholder=" " />
+                                    <label for="txtComplemento">Cidade</label>
+                                </div>
+                                <div class="form-floating mb-3 col-md-4">
+                                    <input class="form-control"type="text" id="estado" name="estado" maxlength="40" required placeholder=" " />
+                                    <label for="txtComplemento">Estado</label>
                                 </div>
                               
                             </fieldset>
@@ -129,7 +135,7 @@
                                     <label for="senha">Senha</label>
                                 </div>
                                 <div class="form-floating mb-3 col-lg-6">
-                                    <input class="form-control" id="txtConfirmacaoSenha" placeholder=" " />
+                                    <input class="form-control" type="password" id="txtConfirmacaoSenha" placeholder=" " />
                                     <label class="form-label" for="txtConfirmacaoSenha">Confirmação da Senha</label>
                                 </div>
                             </fieldset>

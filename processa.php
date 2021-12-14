@@ -8,13 +8,13 @@
     $senha = $_POST['senha'];
     $cpf = $_POST['cpf'];
     $telefone = $_POST['telefone'];
-    $endereco = $_POST['endereco'];
-   
-    $_SESSION['nome'] = $nome;
+    $numero = $_POST['numero'];
+    $rua = $_POST['rua'];
+    $cidade = $_POST['cidade'];
+    $estado = $_POST['estado'];
     
-
-    $sql = "insert into cliente (nome,email,senha,cpf,telefone,endereco) 
-    values ('$nome','$email','$senha','$cpf','$telefone','$endereco')";
+    $sql = "insert into cliente (nome,email,senha,cpf,telefone,numero,rua,cidade,estado) 
+    values ('$nome','$email','$senha','$cpf','$telefone','$numero','$rua','$cidade','$estado')";
     $salvar = mysqli_query($conexao,$sql);
 
     $linhas = mysqli_affected_rows($conexao); 

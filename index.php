@@ -1,6 +1,12 @@
 <?php include_once("conexao.php");
  
- session_start();
+session_start();
+$email = $_SESSION['email'];
+$sql   = "SELECT * FROM cliente WHERE email='$email'";
+$qr    = mysqli_query($conexao,$sql) or die (mysqli_error());
+$row_clientes    = mysqli_fetch_assoc($qr);
+
+
 
 $pagina = (isset($_GET['pagina']))? $_GET['pagina'] : 1;
 
@@ -69,14 +75,17 @@ $total_produtos = mysqli_num_rows($resultado_produtos);
                     <div class="align-self-end">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a href="cliente_pedidos.html" class="nav-link text-white">Logado como 
-                            
+                                <a href="cliente_pedidos.html" class="nav-link text-white">
+                                    <?php echo 'Logado como <b>'.$row_clientes['nome'].'</b>' 
+                                    ?>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="login.php" class="nav-link text-white">Entrar</a>
                             </li>
                             <li class="nav-item">
+                                 <span class="badge rounded-pill bg-light text-danger position-absolute ms-4 mt-0"
+                                    title="produto(s) no carrinho"><small></small></span>
                                 <a href="carrinho.php" class="nav-link text-white">
                                     <i i class="bi-basket2" style="font-size:24px;line-height:24px;">
                                         <use xlink:href="carrinho.php" />
@@ -98,15 +107,15 @@ $total_produtos = mysqli_num_rows($resultado_produtos);
                 </div>
                 <div class="carousel-inner">
                     <div class="carousel-item active" data-bs-interval="3000">
-                        <img src="img/slides/slide01.jpg" class="d-none d-md-block w-100" alt="">
+                        <img src="img/slides/1.png" class="d-none d-md-block w-100" alt="">
                         <img src="img/slides/slide01small.jpg" class="d-block d-md-none  w-100" alt="">
                     </div>
                     <div class="carousel-item" data-bs-interval="3000">
-                        <img src="img/slides/slide01.jpg" class="d-none d-md-block w-100" alt="">
+                        <img src="img/slides/2.png" class="d-none d-md-block w-100" alt="">
                         <img src="img/slides/slide01small.jpg" class="d-block d-md-none  w-100" alt="">
                     </div>
                     <div class="carousel-item" data-bs-interval="3000">
-                        <img src="img/slides/slide01.jpg" class="d-none d-md-block w-100" alt="">
+                        <img src="img/slides/3.png" class="d-none d-md-block w-100" alt="">
                         <img src="img/slides/slide01small.jpg" class="d-block d-md-none  w-100" alt="">
                     </div>
                 </div>
@@ -183,7 +192,7 @@ $total_produtos = mysqli_num_rows($resultado_produtos);
                 <?php while($row_produtos = mysqli_fetch_assoc($resultado_produtos)){ ?>
                 <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
                         <div class="card text-center bg-light">
-                            <a href="#" class="position-absolute end-0 p-2 text-danger">
+                            <?php echo '<a href="cliente_favoritos.php?acao=add&codigo='.$row_produtos['codigo'].'?>" class="position-absolute end-0 p-2 text-danger">'?>
                                 <i class="bi-suit-heart" style="font-size: 24px; line-height: 24px;"></i>
                             </a>
                             <a href="produto.html">
@@ -202,7 +211,7 @@ $total_produtos = mysqli_num_rows($resultado_produtos);
                             <?php echo '<a href="carrinho.php?acao=add&codigo='.$row_produtos['codigo'].'?>" class="btn btn-success mt-2 d-block">
                                     Adicionar ao Carrinho
                                 </a>' ?>
-                                <small class="text-success"><?php echo $row_produtos['unidade']; ?> unidades em estoque</small>
+                                <small class="text-success"><?php echo $row_produtos['unidade']; ?> Kgs em estoque</small>
                             </div>
                         </div>
                     </div>
