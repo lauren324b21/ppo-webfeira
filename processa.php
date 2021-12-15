@@ -8,13 +8,13 @@
     $senha = $_POST['senha'];
     $cpf = $_POST['cpf'];
     $telefone = $_POST['telefone'];
-    $endereco = $_POST['endereco'];
-   
-    $_SESSION['nome'] = $nome;
+    $numero = $_POST['numero'];
+    $rua = $_POST['rua'];
+    $cidade = $_POST['cidade'];
+    $estado = $_POST['estado'];
     
-
-    $sql = "insert into cliente (nome,email,senha,cpf,telefone,endereco) 
-    values ('$nome','$email','$senha','$cpf','$telefone','$endereco')";
+    $sql = "insert into cliente (nome,email,senha,cpf,telefone,numero,rua,cidade,estado) 
+    values ('$nome','$email','$senha','$cpf','$telefone','$numero','$rua','$cidade','$estado')";
     $salvar = mysqli_query($conexao,$sql);
 
     $linhas = mysqli_affected_rows($conexao); 
@@ -41,7 +41,8 @@
             header('Location: login.php');
 
             } else {
-                print "Houve um erro! <br>Email ou cpf já existentes";
+                echo  "<script>alert('Houve um erro! Email ou CPF já existentes!');window.location.href = 'cadastro.php';</script>";
+        exit();
             }
         ?>
     </script>

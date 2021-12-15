@@ -1,6 +1,13 @@
 <?php include_once("conexao.php");
  
- session_start();
+session_start();
+if($_SESSION['email'] <> null){
+$email = $_SESSION['email'];
+$sql   = "SELECT * FROM cliente WHERE email='$email'";
+$qr    = mysqli_query($conexao,$sql) or die (mysqli_error());
+$row_clientes    = mysqli_fetch_assoc($qr);
+}
+
 
 $pagina = (isset($_GET['pagina']))? $_GET['pagina'] : 1;
 
@@ -48,7 +55,7 @@ $total_produtos = mysqli_num_rows($resultado_produtos);
 <body>
 
     <div class="d-flex flex-column wrapper">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-success border-bottom shadow-sm mb-3">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success border-bottom shadow-sm mb-3">
             <div class="container">
                 <a class="navbar-brand" href="index.php">
                     <strong>Web Feira</strong>
@@ -63,23 +70,51 @@ $total_produtos = mysqli_num_rows($resultado_produtos);
                             <a href="index.php" class="nav-link text-white">Principal</a>
                         </li>
                         <li class="nav-item">
-                            <a href="contato.html" class="nav-link text-white">Contato</a>
+                            <a href="contato.php" class="nav-link text-white">Contato</a>
                         </li>
                     </ul>
                     <div class="align-self-end">
                         <ul class="navbar-nav">
+                                    <?php
+                                    if($_SESSION['email'] <> null){
+                                    echo '
+                                    <li class="nav-item">
+                                    <a href="cliente_pedidos.html" class="nav-link text-white">
+                                   Logado como <b>'.$row_clientes['nome'].'</b>
+                                    </a>
+                                    </li>';
+                                    echo  '
+                                    <li class="nav-item">
+                                    <a href="login.php" class="nav-link text-white">
+                                   Sair
+                                     </a>
+                                     </li>';
+                                    } else {
+                                       echo  '
+                                       </li>
+                                       <a href="cadastro.php" class="nav-link text-white">
+                                       Quero me cadastrar
+                                        </a>
+                                        </li>';
+                                        echo  '
+                                        </li>
+                                        <a href="login.php" class="nav-link text-white">
+                                       Entrar
+                                         </a>
+                                         </li>';
+                                    } 
+                                    ?>
                             <li class="nav-item">
-                                <a href="cliente_pedidos.html" class="nav-link text-white">Logado como 
-                            
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="login.php" class="nav-link text-white">Entrar</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="carrinho.php" class="nav-link text-white">
+                            <?php
+                                    if($_SESSION['email'] <> null){
+                                    echo '<a href="carrinho.php" class="nav-link text-white">
                                     <i i class="bi-basket2" style="font-size:24px;line-height:24px;">
                                         <use xlink:href="carrinho.php" />
+                                    </i>';
+                                    } else {
+                            
+                                    } 
+                                    ?>
                                     </i>
                                 </a>
                             </li>
@@ -98,15 +133,15 @@ $total_produtos = mysqli_num_rows($resultado_produtos);
                 </div>
                 <div class="carousel-inner">
                     <div class="carousel-item active" data-bs-interval="3000">
-                        <img src="img/slides/slide01.jpg" class="d-none d-md-block w-100" alt="">
+                        <img src="img/slides/1.png" class="d-none d-md-block w-100" alt="">
                         <img src="img/slides/slide01small.jpg" class="d-block d-md-none  w-100" alt="">
                     </div>
                     <div class="carousel-item" data-bs-interval="3000">
-                        <img src="img/slides/slide01.jpg" class="d-none d-md-block w-100" alt="">
+                        <img src="img/slides/2.png" class="d-none d-md-block w-100" alt="">
                         <img src="img/slides/slide01small.jpg" class="d-block d-md-none  w-100" alt="">
                     </div>
                     <div class="carousel-item" data-bs-interval="3000">
-                        <img src="img/slides/slide01.jpg" class="d-none d-md-block w-100" alt="">
+                        <img src="img/slides/3.png" class="d-none d-md-block w-100" alt="">
                         <img src="img/slides/slide01small.jpg" class="d-block d-md-none  w-100" alt="">
                     </div>
                 </div>
@@ -183,7 +218,7 @@ $total_produtos = mysqli_num_rows($resultado_produtos);
                 <?php while($row_produtos = mysqli_fetch_assoc($resultado_produtos)){ ?>
                 <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
                         <div class="card text-center bg-light">
-                            <a href="#" class="position-absolute end-0 p-2 text-danger">
+                            <?php echo '<a href="cliente_favoritos.php?acao=add&codigo='.$row_produtos['codigo'].'?>" class="position-absolute end-0 p-2 text-danger">'?>
                                 <i class="bi-suit-heart" style="font-size: 24px; line-height: 24px;"></i>
                             </a>
                             <a href="produto.html">
@@ -200,9 +235,9 @@ $total_produtos = mysqli_num_rows($resultado_produtos);
                             </div>
                             <div class="card-footer">
                             <?php echo '<a href="carrinho.php?acao=add&codigo='.$row_produtos['codigo'].'?>" class="btn btn-success mt-2 d-block">
-                                    Adicionar ao Carrinho
+                                    Adicionar à cestinha
                                 </a>' ?>
-                                <small class="text-success"><?php echo $row_produtos['unidade']; ?> unidades em estoque</small>
+                                <small class="text-success"><?php echo $row_produtos['unidade']; ?> Kgs em estoque</small>
                             </div>
                         </div>
                     </div>
@@ -263,33 +298,34 @@ $total_produtos = mysqli_num_rows($resultado_produtos);
             <div class="container">
                 <div class="row py-3">
                     <div class="col-12 col-md-4 text-center">
-                        &copy; 2020 - Web Feira Online Ltda ME<br>
-                        Rua Virtual Inexistente, 171, Compulândia/PC <br>
-                        CPNJ 99.999.999/0001-99
+                        &copy; 2020 - WebFeira Ltda ME<br>
+                        Sítio Neves - Zona Rural, SN, Jucati/PE <br>
+                        CPNJ 32.001.533/0001-84
                     </div>
                     <div class="col-12 col-md-4 text-center">
-                        <a href="privacidade.html" class="text-decoration-none text-dark">
+                        <a href="privacidade.php" class="text-decoration-none text-dark">
                             Política de Privacidade
                         </a><br>
-                        <a href="termos.html" class="text-decoration-none text-dark">
+                        <a href="termos.php" class="text-decoration-none text-dark">
                             Termos de Uso
                         </a><br>
-                        <a href="quemsomos.html" class="text-decoration-none text-dark">
+                        <a href="quemsomos.php" class="text-decoration-none text-dark">
                             Quem Somos
                         </a><br>
-                        <a href="trocas.html" class="text-decoration-none text-dark">
+                        <a href="trocas.php" class="text-decoration-none text-dark">
                             Trocas e Devoluções
                         </a>
                     </div>
                     <div class="col-12 col-md-4 text-center">
-                        <a href="contato.html" class="text-decoration-none text-dark">
+                        <a href="contato.php" class="text-decoration-none text-dark">
                             Contato pelo Site
                         </a><br>
                         E-mail: <a href="mailto:email@dominio.com" class="text-decoration-none text-dark">
                             email@dominio.com
                         </a><br>
-                        Telefone: <a href="phone:28999990000" class="text-decoration-none text-dark">
-                            (28) 99999-0000
+                        Telefone: <a href="phone:87981189959" class="text-decoration-none text-dark">
+                            
+                                (87) 98118-9959
                         </a>
                     </div>
                 </div>

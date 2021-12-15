@@ -1,6 +1,11 @@
 <?php include_once("conexao.php");
     
     session_start();
+    $email = $_SESSION['email'];
+    $sql   = "SELECT * FROM cliente WHERE email='$email'";
+    $qr    = mysqli_query($conexao,$sql) or die (mysqli_error());
+    $row_clientes    = mysqli_fetch_assoc($qr);
+    
     if(!isset($_SESSION['carrinho'])){
         $_SESSION['carrinho'] = array();
     }
@@ -39,8 +44,7 @@
             }
         }
        
-
-
+       
     //print_r($_SESSION['carrinho']);
     }
     
@@ -94,7 +98,7 @@
                         <ul class="navbar-nav">
                             <li class="nav-item">
                                 <a href="cliente_pedidos.html" class="nav-link text-white">Logado como 
-                            
+                                <b> <?php echo $row_clientes['nome']; ?> </b>
                                 </a>
                             </li>
                             <li class="nav-item">
@@ -116,16 +120,16 @@
         <main class="flex-fill">
         <form action="?acao=up" method="post">
             <div class="container">
-                <h1>Carrinho de Compras</h1>
+                <h1>Cestinha de Compras</h1>
                 <?php
                 $total = 0;
                     if(count($_SESSION['carrinho']) == 0){
                         echo '<h5><a href="#" class="text-decoration-none text-success">
                         Carrinho Vazio </a></h5>';
                     } else {
-                        
                         is_numeric($total);
                         foreach($_SESSION['carrinho'] as $codigo => $qtd){
+                            $_SESSION['qtd'] = $qtd;
                             $sql   = "SELECT * FROM produto WHERE codigo='$codigo'";
                             $qr    = mysqli_query($conexao,$sql) or die (mysqli_error());
                             $row_produtos    = mysqli_fetch_assoc($qr);
@@ -188,9 +192,8 @@
                                     $total = number_format($total, 2, ',', '.');
                                     echo '<a class="btn btn-outline-success btn-lg">Valor total: '.$total.'</a>';
                                 } else {
-                                   
                                 }
-                                
+                            $_SESSION['total'] = $total;    
                             ?>
                             <a href="fechamento_itens.php" class="btn btn-success btn-lg ms-2 mt-xs-3">Fechar Compra</a>
                         </div>
@@ -204,33 +207,34 @@
             <div class="container">
                 <div class="row py-3">
                     <div class="col-12 col-md-4 text-center">
-                        &copy; 2020 - Web Feira Ltda ME<br>
-                        Rua Virtual Inexistente, 171, Compulândia/PC <br>
-                        CPNJ 99.999.999/0001-99
+                        &copy; 2020 - WebFeira Ltda ME<br>
+                        Sítio Neves - Zona Rural, SN, Jucati/PE <br>
+                        CPNJ 32.001.533/0001-84
                     </div>
                     <div class="col-12 col-md-4 text-center">
-                        <a href="privacidade.html" class="text-decoration-none text-dark">
+                        <a href="privacidade.php" class="text-decoration-none text-dark">
                             Política de Privacidade
                         </a><br>
-                        <a href="termos.html" class="text-decoration-none text-dark">
+                        <a href="termos.php" class="text-decoration-none text-dark">
                             Termos de Uso
                         </a><br>
-                        <a href="quemsomos.html" class="text-decoration-none text-dark">
+                        <a href="quemsomos.php" class="text-decoration-none text-dark">
                             Quem Somos
                         </a><br>
-                        <a href="trocas.html" class="text-decoration-none text-dark">
+                        <a href="trocas.php" class="text-decoration-none text-dark">
                             Trocas e Devoluções
                         </a>
                     </div>
                     <div class="col-12 col-md-4 text-center">
-                        <a href="contato.html" class="text-decoration-none text-dark">
+                        <a href="contato.php" class="text-decoration-none text-dark">
                             Contato pelo Site
                         </a><br>
                         E-mail: <a href="mailto:email@dominio.com" class="text-decoration-none text-dark">
                             email@dominio.com
                         </a><br>
-                        Telefone: <a href="phone:28999990000" class="text-decoration-none text-dark">
-                            (28) 99999-0000
+                        Telefone: <a href="phone:87981189959" class="text-decoration-none text-dark">
+                            
+                                (87) 98118-9959
                         </a>
                     </div>
                 </div>

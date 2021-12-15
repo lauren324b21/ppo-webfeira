@@ -1,8 +1,14 @@
 <?php include_once("conexao.php");
 
+    session_start();
     $pesquisar = $_POST['pesquisar'];
     $r_produtos = "SELECT * FROM produto WHERE nome like '%$pesquisar%' LIMIT 5";
     $re_produtos = mysqli_query($conexao, $r_produtos);
+
+    $email = $_SESSION['email'];
+    $sql   = "SELECT * FROM cliente WHERE email='$email'";
+    $qr    = mysqli_query($conexao,$sql) or die (mysqli_error());
+    $row_clientes    = mysqli_fetch_assoc($qr);
  
     $pagina = (isset($_GET['pagina']))? $_GET['pagina'] : 1;
 
@@ -51,77 +57,89 @@
     <body>
     
         <div class="d-flex flex-column wrapper">
-            <nav class="navbar navbar-expand-lg navbar-dark bg-success border-bottom shadow-sm mb-3">
-                <div class="container">
-                    <a class="navbar-brand" href="/">
-                        <strong>Web Feira</strong>
-                    </a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                        data-bs-target=".navbar-collapse">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="navbar-collapse collapse">
-                        <ul class="navbar-nav flex-grow-1">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-success border-bottom shadow-sm mb-3">
+            <div class="container">
+                <a class="navbar-brand" href="index.php">
+                    <strong>Web Feira</strong>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target=".navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a href="index.php" class="nav-link text-white">Principal</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="contato.php" class="nav-link text-white">Contato</a>
+                        </li>
+                    </ul>
+                    <div class="align-self-end">
+                        <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a href="index.html" class="nav-link text-white">Principal</a>
+                                    <?php
+                                    if($row_clientes <> null){
+                                    echo '<a href="cliente_pedidos.html" class="nav-link text-white">
+                                   Logado como <b>'.$row_clientes['nome'].'</b>
+                                    </a>';
+                                    } else {
+                                       echo  '<a href="cadastro.php" class="nav-link text-white">
+                                       Quero me cadastrar
+                                        </a>';
+                                    } 
+                                    ?>
                             </li>
                             <li class="nav-item">
-                                <a href="contato.html" class="nav-link text-white">Contato</a>
+                                <a href="login.php" class="nav-link text-white">Entrar</a>
+                            </li>
+                            <li class="nav-item">
+                                 <span class="badge rounded-pill bg-light text-danger position-absolute ms-4 mt-0"
+                                    title="produto(s) no carrinho"><small></small></span>
+                                <a href="carrinho.php" class="nav-link text-white">
+                                    <i i class="bi-basket2" style="font-size:24px;line-height:24px;">
+                                        <use xlink:href="carrinho.php" />
+                                    </i>
+                                </a>
                             </li>
                         </ul>
-                        <div class="align-self-end">
-                            <ul class="navbar-nav">
-                                <li class="nav-item">
-                                    <a href="cadastro.html" class="nav-link text-white">Quero Me Cadastrar</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="login.html" class="nav-link text-white">Entrar</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="carrinho.html" class="nav-link text-white">
-                                        <svg class="bi" width="24" height="24" fill="currentColor">
-                                            <use xlink:href="/bi.svg#basket2" />
-                                        </svg>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
                     </div>
                 </div>
-            </nav>
-    
-            <div class="container">
-                <div id="carouselMain" class="carousel slide carousel-dark" data-bs-ride="carousel">
-                    <div class="carousel-indicators">
-                        <button type="button" data-bs-target="#carouselMain" data-bs-slide-to="0" class="active"></button>
-                        <button type="button" data-bs-target="#carouselMain" data-bs-slide-to="1"></button>
-                        <button type="button" data-bs-target="#carouselMain" data-bs-slide-to="2"></button>
-                    </div>
-                    <div class="carousel-inner">
-                        <div class="carousel-item active" data-bs-interval="3000">
-                            <img src="img/slides/slide01.jpg" class="d-none d-md-block w-100" alt="">
-                            <img src="img/slides/slide01small.jpg" class="d-block d-md-none  w-100" alt="">
-                        </div>
-                        <div class="carousel-item" data-bs-interval="3000">
-                            <img src="img/slides/slide01.jpg" class="d-none d-md-block w-100" alt="">
-                            <img src="img/slides/slide01small.jpg" class="d-block d-md-none  w-100" alt="">
-                        </div>
-                        <div class="carousel-item" data-bs-interval="3000">
-                            <img src="img/slides/slide01.jpg" class="d-none d-md-block w-100" alt="">
-                            <img src="img/slides/slide01small.jpg" class="d-block d-md-none  w-100" alt="">
-                        </div>
-                    </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselMain" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon"></span>
-                        <span class="visually-hidden">Anterior</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselMain" data-bs-slide="next">
-                        <span class="carousel-control-next-icon"></span>
-                        <span class="visually-hidden">Próximo</span>
-                    </button>
-                </div>
-                <hr class="mt-3">
             </div>
+        </nav>
+
+        <div class="container">
+            <div id="carouselMain" class="carousel slide carousel-dark" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselMain" data-bs-slide-to="0" class="active"></button>
+                    <button type="button" data-bs-target="#carouselMain" data-bs-slide-to="1"></button>
+                    <button type="button" data-bs-target="#carouselMain" data-bs-slide-to="2"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active" data-bs-interval="3000">
+                        <img src="img/slides/1.png" class="d-none d-md-block w-100" alt="">
+                        <img src="img/slides/slide01small.jpg" class="d-block d-md-none  w-100" alt="">
+                    </div>
+                    <div class="carousel-item" data-bs-interval="3000">
+                        <img src="img/slides/2.png" class="d-none d-md-block w-100" alt="">
+                        <img src="img/slides/slide01small.jpg" class="d-block d-md-none  w-100" alt="">
+                    </div>
+                    <div class="carousel-item" data-bs-interval="3000">
+                        <img src="img/slides/3.png" class="d-none d-md-block w-100" alt="">
+                        <img src="img/slides/slide01small.jpg" class="d-block d-md-none  w-100" alt="">
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselMain" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                    <span class="visually-hidden">Anterior</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselMain" data-bs-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                    <span class="visually-hidden">Próximo</span>
+                </button>
+            </div>
+            <hr class="mt-3">
+        </div>
     
             <main class="flex-fill">
                 <div class="container">
@@ -133,7 +151,7 @@
                                     <input type="text" name="pesquisar" class="form-control" placeholder="Digite aqui o que procura">
                                     <button class="btn btn-success">Buscar</button>
                                     
-                                    <button class="btn btn-success onclick='index.php'">Voltar</button>
+                                    <a href="index.php" class="btn btn-success"> voltar </a>
                                 </div>
                             </form>
                         </div>
@@ -186,14 +204,14 @@
                     <?php while($rows_produtos = mysqli_fetch_array($re_produtos)){ ?>
                     <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
                             <div class="card text-center bg-light">
-                                <a href="#" class="position-absolute end-0 p-2 text-danger">
-                                    <i class="bi-suit-heart" style="font-size: 24px; line-height: 24px;"></i>
+                            <?php echo '<a href="cliente_favoritos.php?acao=add&codigo='.$rows_produtos['codigo'].'?>" class="position-absolute end-0 p-2 text-danger">'?>
+                                <i class="bi-suit-heart" style="font-size: 24px; line-height: 24px;"></i>
                                 </a>
                                 <a href="produto.html">
-                                    <img src="img/produtos/000001.jpg" class="card-img-top">
+                                <?php echo '<img src="'.$rows_produtos['imagem'].'" class="card-img-top" />' ?>
                                 </a>
                                 <div class="card-header">
-                                <?php echo $rows_produtos['valor']; ?>
+                                <?php echo 'R$ '.number_format($rows_produtos['valor'], 2, ',', '.').''; ?>
                                 </div>
                                 <div class="card-body">
                                     <h5 class="card-title"><?php echo $rows_produtos['nome']; ?></h5>
@@ -202,9 +220,9 @@
                                     </p>
                                 </div>
                                 <div class="card-footer">
-                                    <a href="carrinho.php?add=carrinho&codigo=<?php $rows_produtos['codigo']?>" class="btn btn-success mt-2 d-block">
-                                        Adicionar ao Carrinho
-                                    </a>
+                                <?php echo '<a href="carrinho.php?acao=add&codigo='.$rows_produtos['codigo'].'?>" class="btn btn-success mt-2 d-block">
+                                    Adicionar ao Carrinho
+                                </a>' ?>
                                     <small class="text-success"><?php echo $rows_produtos['unidade']; ?> unidades em estoque</small>
                                 </div>
                             </div>
@@ -263,43 +281,44 @@
             </main>
     
             <footer class="border-top text-muted bg-light">
-                <div class="container">
-                    <div class="row py-3">
-                        <div class="col-12 col-md-4 text-center">
-                            &copy; 2020 - Web Feira Online Ltda ME<br>
-                            Rua Virtual Inexistente, 171, Compulândia/PC <br>
-                            CPNJ 99.999.999/0001-99
-                        </div>
-                        <div class="col-12 col-md-4 text-center">
-                            <a href="privacidade.html" class="text-decoration-none text-dark">
-                                Política de Privacidade
-                            </a><br>
-                            <a href="termos.html" class="text-decoration-none text-dark">
-                                Termos de Uso
-                            </a><br>
-                            <a href="quemsomos.html" class="text-decoration-none text-dark">
-                                Quem Somos
-                            </a><br>
-                            <a href="trocas.html" class="text-decoration-none text-dark">
-                                Trocas e Devoluções
-                            </a>
-                        </div>
-                        <div class="col-12 col-md-4 text-center">
-                            <a href="contato.html" class="text-decoration-none text-dark">
-                                Contato pelo Site
-                            </a><br>
-                            E-mail: <a href="mailto:email@dominio.com" class="text-decoration-none text-dark">
-                                email@dominio.com
-                            </a><br>
-                            Telefone: <a href="phone:28999990000" class="text-decoration-none text-dark">
-                                (28) 99999-0000
-                            </a>
-                        </div>
+            <div class="container">
+                <div class="row py-3">
+                    <div class="col-12 col-md-4 text-center">
+                        &copy; 2020 - WebFeira Ltda ME<br>
+                        Sítio Neves - Zona Rural, SN, Jucati/PE <br>
+                        CPNJ 32.001.533/0001-84
+                    </div>
+                    <div class="col-12 col-md-4 text-center">
+                        <a href="privacidade.php" class="text-decoration-none text-dark">
+                            Política de Privacidade
+                        </a><br>
+                        <a href="termos.php" class="text-decoration-none text-dark">
+                            Termos de Uso
+                        </a><br>
+                        <a href="quemsomos.php" class="text-decoration-none text-dark">
+                            Quem Somos
+                        </a><br>
+                        <a href="trocas.php" class="text-decoration-none text-dark">
+                            Trocas e Devoluções
+                        </a>
+                    </div>
+                    <div class="col-12 col-md-4 text-center">
+                        <a href="contato.php" class="text-decoration-none text-dark">
+                            Contato pelo Site
+                        </a><br>
+                        E-mail: <a href="mailto:email@dominio.com" class="text-decoration-none text-dark">
+                            email@dominio.com
+                        </a><br>
+                        Telefone: <a href="phone:87981189959" class="text-decoration-none text-dark">
+                            
+                                (87) 98118-9959
+                        </a>
                     </div>
                 </div>
-            </footer>
-        </div>
-        <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    </body>
-    
-    </html>
+            </div>
+        </footer>
+    </div>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

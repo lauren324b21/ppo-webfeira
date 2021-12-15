@@ -25,9 +25,9 @@
 
 <body>
     <div class="d-flex flex-column wrapper">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-success border-bottom shadow-sm mb-3">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success border-bottom shadow-sm mb-3">
             <div class="container">
-                <a class="navbar-brand" href="/">
+                <a class="navbar-brand" href="index.php">
                     <strong>Web Feira</strong>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -37,28 +37,21 @@
                 <div class="navbar-collapse collapse">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a href="/index.html" class="nav-link text-white">Principal</a>
+                            <a href="index.php" class="nav-link text-white">Principal</a>
                         </li>
                         <li class="nav-item">
-                            <a href="/contato.html" class="nav-link text-white">Contato</a>
+                            <a href="contato.html" class="nav-link text-white">Contato</a>
                         </li>
                     </ul>
                     <div class="align-self-end">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a href="/cadastro.html" class="nav-link text-white">Quero Me Cadastrar</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="/login.html" class="nav-link text-white">Entrar</a>
-                            </li>
-                            <li class="nav-item">
-                                <span class="badge rounded-pill bg-light text-danger position-absolute ms-4 mt-0"
-                                    title="5 produto(s) no carrinho"><small>5</small></span>
-                                <a href="/carrinho.html" class="nav-link text-white">
-                                    <svg class="bi" width="24" height="24" fill="currentColor">
-                                        <use xlink:href="/bi.svg#basket2" />
-                                    </svg>
+                                <a href="cadastro.php" class="nav-link text-white"> Quero me cadastrar 
+                                <b>  </b>
                                 </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="login.php" class="nav-link text-white">Entrar</a>
                             </li>
                         </ul>
                     </div>
@@ -105,40 +98,41 @@
             <div class="container">
                 <div class="row py-3">
                     <div class="col-12 col-md-4 text-center">
-                        &copy; 2020 - Web Feira Ltda ME<br>
-                        Rua Virtual Inexistente, 171, Compulândia/PC <br>
-                        CPNJ 99.999.999/0001-99
+                        &copy; 2020 - WebFeira Ltda ME<br>
+                        Sítio Neves - Zona Rural, SN, Jucati/PE <br>
+                        CPNJ 32.001.533/0001-84
                     </div>
                     <div class="col-12 col-md-4 text-center">
-                        <a href="/privacidade.html" class="text-decoration-none text-dark">
+                        <a href="privacidade.php" class="text-decoration-none text-dark">
                             Política de Privacidade
                         </a><br>
-                        <a href="/termos.html" class="text-decoration-none text-dark">
+                        <a href="termos.php" class="text-decoration-none text-dark">
                             Termos de Uso
                         </a><br>
-                        <a href="/quemsomos.html" class="text-decoration-none text-dark">
+                        <a href="quemsomos.php" class="text-decoration-none text-dark">
                             Quem Somos
                         </a><br>
-                        <a href="/trocas.html" class="text-decoration-none text-dark">
+                        <a href="trocas.php" class="text-decoration-none text-dark">
                             Trocas e Devoluções
                         </a>
                     </div>
                     <div class="col-12 col-md-4 text-center">
-                        <a href="/contato.html" class="text-decoration-none text-dark">
+                        <a href="contato.php" class="text-decoration-none text-dark">
                             Contato pelo Site
                         </a><br>
                         E-mail: <a href="mailto:email@dominio.com" class="text-decoration-none text-dark">
                             email@dominio.com
                         </a><br>
-                        Telefone: <a href="phone:28999990000" class="text-decoration-none text-dark">
-                            (28) 99999-0000
+                        Telefone: <a href="phone:87981189959" class="text-decoration-none text-dark">
+                            
+                                (87) 98118-9959
                         </a>
                     </div>
                 </div>
             </div>
         </footer>
     </div>
-    <script src="/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

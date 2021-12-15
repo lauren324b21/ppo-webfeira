@@ -4,6 +4,10 @@
     if(!isset($_SESSION['carrinho'])){
         $_SESSION['carrinho'] = array();
     }
+    $email = $_SESSION['email'];
+    $sql   = "SELECT * FROM cliente WHERE email='$email'";
+    $qr    = mysqli_query($conexao,$sql) or die (mysqli_error());
+    $row_clientes    = mysqli_fetch_assoc($qr);
 ?>
 <!doctype html>
 <html lang="pt-br">
@@ -31,35 +35,42 @@
 
 <body>
     <div class="d-flex flex-column wrapper">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-success border-bottom shadow-sm mb-3">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success border-bottom shadow-sm mb-3">
             <div class="container">
-                <a class="navbar-brand" href="/"><b>Web Feira</b></a>
+                <a class="navbar-brand" href="index.php">
+                    <strong>Web Feira</strong>
+                </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target=".navbar-collapse">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse">
+                <div class="navbar-collapse collapse">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="/index.html">Principal</a>
+                            <a href="index.php" class="nav-link text-white">Principal</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="/contato.html">Contato</a>
+                            <a href="contato.html" class="nav-link text-white">Contato</a>
                         </li>
                     </ul>
                     <div class="align-self-end">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a href="/cliente_pedidos.html" class="nav-link text-white">Logado como <b>Laurinha Lero</b></a>
+                                <a href="cliente_pedidos.html" class="nav-link text-white">
+                                    <?php echo 'Logado como <b>'.$row_clientes['nome'].'</b>' 
+                                    ?>
+                                </a>
                             </li>
                             <li class="nav-item">
-                                <a href="/login.html" class="nav-link text-white">Sair</a>
+                                <a href="login.php" class="nav-link text-white">Entrar</a>
                             </li>
                             <li class="nav-item">
-                                <span class="badge rounded-pill bg-light text-success position-absolute ms-4 mt-0"
-                                    title="5 produto(s) no carrinho"><small>5</small></span>
-                                <a href="/carrinho.html" class="nav-link text-white">
-                                    <i class="bi-basket2" style="font-size:24px;line-height:24px;"></i>
+                                 <span class="badge rounded-pill bg-light text-danger position-absolute ms-4 mt-0"
+                                    title="produto(s) no carrinho"><small></small></span>
+                                <a href="carrinho.php" class="nav-link text-white">
+                                    <i i class="bi-basket2" style="font-size:24px;line-height:24px;">
+                                        <use xlink:href="carrinho.php" />
+                                    </i>
                                 </a>
                             </li>
                         </ul>
@@ -125,7 +136,7 @@
                 
                 <div class="text-end">
                     <a href="carrinho.php" class="btn btn-outline-success btn-lg mb-3">
-                                    Voltar ao Carrinho
+                                    Voltar à cestinha
                     </a>
                     <?php 
                         if($total <> 0){
@@ -135,7 +146,7 @@
                                     
                         }              
                     ?>
-                    <a href="fechamento_endereco.html" class="btn btn-success btn-lg ms-2 mb-3">Continuar</a>
+                    <a href="fechamento_endereco.php" class="btn btn-success btn-lg ms-2 mb-3">Continuar</a>
                 </div>
             </div>
         </main>
@@ -149,21 +160,21 @@
                         CPNJ 32.001.533/0001-84
                     </div>
                     <div class="col-12 col-md-4 text-center">
-                        <a href="/privacidade.html" class="text-decoration-none text-dark">
+                        <a href="privacidade.php" class="text-decoration-none text-dark">
                             Política de Privacidade
                         </a><br>
-                        <a href="/termos.html" class="text-decoration-none text-dark">
+                        <a href="termos.php" class="text-decoration-none text-dark">
                             Termos de Uso
                         </a><br>
-                        <a href="/quemsomos.html" class="text-decoration-none text-dark">
+                        <a href="quemsomos.php" class="text-decoration-none text-dark">
                             Quem Somos
                         </a><br>
-                        <a href="/trocas.html" class="text-decoration-none text-dark">
+                        <a href="trocas.php" class="text-decoration-none text-dark">
                             Trocas e Devoluções
                         </a>
                     </div>
                     <div class="col-12 col-md-4 text-center">
-                        <a href="/contato.html" class="text-decoration-none text-dark">
+                        <a href="contato.php" class="text-decoration-none text-dark">
                             Contato pelo Site
                         </a><br>
                         E-mail: <a href="mailto:email@dominio.com" class="text-decoration-none text-dark">
