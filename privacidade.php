@@ -1,10 +1,12 @@
 <?php include_once("conexao.php");
  
 session_start();
-$email = $_SESSION['email'];
-$sql   = "SELECT * FROM cliente WHERE email='$email'";
-$qr    = mysqli_query($conexao,$sql) or die (mysqli_error());
-$row_clientes    = mysqli_fetch_assoc($qr);
+if($_SESSION['email'] <> null){
+    $email = $_SESSION['email'];
+    $sql   = "SELECT * FROM cliente WHERE email='$email'";
+    $qr    = mysqli_query($conexao,$sql) or die (mysqli_error());
+    $row_clientes    = mysqli_fetch_assoc($qr);
+}
 ?>
 <!doctype html>
 <html lang="pt-br">

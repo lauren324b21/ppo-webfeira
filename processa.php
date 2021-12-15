@@ -41,7 +41,8 @@
             header('Location: login.php');
 
             } else {
-                print "Houve um erro! <br>Email ou cpf já existentes";
+                echo  "<script>alert('Houve um erro! Email ou CPF já existentes!');window.location.href = 'cadastro.php';</script>";
+        exit();
             }
         ?>
     </script>

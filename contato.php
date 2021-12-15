@@ -1,10 +1,12 @@
 <?php include_once("conexao.php");
  
 session_start();
-$email = $_SESSION['email'];
-$sql   = "SELECT * FROM cliente WHERE email='$email'";
-$qr    = mysqli_query($conexao,$sql) or die (mysqli_error());
-$row_clientes    = mysqli_fetch_assoc($qr);
+if($_SESSION['email'] <> null){
+    $email = $_SESSION['email'];
+    $sql   = "SELECT * FROM cliente WHERE email='$email'";
+    $qr    = mysqli_query($conexao,$sql) or die (mysqli_error());
+    $row_clientes    = mysqli_fetch_assoc($qr);
+    }
 ?>
 <!doctype html>
 <html lang="pt-br">
@@ -54,7 +56,7 @@ $row_clientes    = mysqli_fetch_assoc($qr);
                         <ul class="navbar-nav">
                             <li class="nav-item">
                                     <?php
-                                    if($row_clientes <> null){
+                                    if($_SESSION['email'] <> null){
                                     echo '<a href="cliente_pedidos.html" class="nav-link text-white">
                                    Logado como <b>'.$row_clientes['nome'].'</b>
                                     </a>';
@@ -69,12 +71,16 @@ $row_clientes    = mysqli_fetch_assoc($qr);
                                 <a href="login.php" class="nav-link text-white">Entrar</a>
                             </li>
                             <li class="nav-item">
-                                 <span class="badge rounded-pill bg-light text-danger position-absolute ms-4 mt-0"
-                                    title="produto(s) no carrinho"><small></small></span>
-                                <a href="carrinho.php" class="nav-link text-white">
+                                    <?php
+                                    if($_SESSION['email'] <> null){
+                                    echo '<a href="carrinho.php" class="nav-link text-white">
                                     <i i class="bi-basket2" style="font-size:24px;line-height:24px;">
                                         <use xlink:href="carrinho.php" />
-                                    </i>
+                                    </i>';
+                                    } else {
+                                       
+                                    } 
+                                    ?>
                                 </a>
                             </li>
                         </ul>
@@ -128,21 +134,21 @@ $row_clientes    = mysqli_fetch_assoc($qr);
                         CPNJ 32.001.533/0001-84
                     </div>
                     <div class="col-12 col-md-4 text-center">
-                        <a href="privacidade.html" class="text-decoration-none text-dark">
+                        <a href="privacidade.php" class="text-decoration-none text-dark">
                             Política de Privacidade
                         </a><br>
-                        <a href="termos.html" class="text-decoration-none text-dark">
+                        <a href="termos.php" class="text-decoration-none text-dark">
                             Termos de Uso
                         </a><br>
-                        <a href="quemsomos.html" class="text-decoration-none text-dark">
+                        <a href="quemsomos.php" class="text-decoration-none text-dark">
                             Quem Somos
                         </a><br>
-                        <a href="trocas.html" class="text-decoration-none text-dark">
+                        <a href="trocas.php" class="text-decoration-none text-dark">
                             Trocas e Devoluções
                         </a>
                     </div>
                     <div class="col-12 col-md-4 text-center">
-                        <a href="contato.html" class="text-decoration-none text-dark">
+                        <a href="contato.php" class="text-decoration-none text-dark">
                             Contato pelo Site
                         </a><br>
                         E-mail: <a href="mailto:email@dominio.com" class="text-decoration-none text-dark">
@@ -157,7 +163,7 @@ $row_clientes    = mysqli_fetch_assoc($qr);
             </div>
         </footer>
     </div>
-    <script src="/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

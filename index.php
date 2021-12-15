@@ -1,11 +1,12 @@
 <?php include_once("conexao.php");
  
 session_start();
+if($_SESSION['email'] <> null){
 $email = $_SESSION['email'];
 $sql   = "SELECT * FROM cliente WHERE email='$email'";
 $qr    = mysqli_query($conexao,$sql) or die (mysqli_error());
 $row_clientes    = mysqli_fetch_assoc($qr);
-
+}
 
 
 $pagina = (isset($_GET['pagina']))? $_GET['pagina'] : 1;
@@ -74,28 +75,46 @@ $total_produtos = mysqli_num_rows($resultado_produtos);
                     </ul>
                     <div class="align-self-end">
                         <ul class="navbar-nav">
-                            <li class="nav-item">
                                     <?php
-                                    if($row_clientes <> null){
-                                    echo '<a href="cliente_pedidos.html" class="nav-link text-white">
+                                    if($_SESSION['email'] <> null){
+                                    echo '
+                                    <li class="nav-item">
+                                    <a href="cliente_pedidos.html" class="nav-link text-white">
                                    Logado como <b>'.$row_clientes['nome'].'</b>
-                                    </a>';
+                                    </a>
+                                    </li>';
+                                    echo  '
+                                    <li class="nav-item">
+                                    <a href="login.php" class="nav-link text-white">
+                                   Sair
+                                     </a>
+                                     </li>';
                                     } else {
-                                       echo  '<a href="cadastro.php" class="nav-link text-white">
+                                       echo  '
+                                       </li>
+                                       <a href="cadastro.php" class="nav-link text-white">
                                        Quero me cadastrar
-                                        </a>';
+                                        </a>
+                                        </li>';
+                                        echo  '
+                                        </li>
+                                        <a href="login.php" class="nav-link text-white">
+                                       Entrar
+                                         </a>
+                                         </li>';
                                     } 
                                     ?>
-                            </li>
                             <li class="nav-item">
-                                <a href="login.php" class="nav-link text-white">Entrar</a>
-                            </li>
-                            <li class="nav-item">
-                                 <span class="badge rounded-pill bg-light text-danger position-absolute ms-4 mt-0"
-                                    title="produto(s) no carrinho"><small></small></span>
-                                <a href="carrinho.php" class="nav-link text-white">
+                            <?php
+                                    if($_SESSION['email'] <> null){
+                                    echo '<a href="carrinho.php" class="nav-link text-white">
                                     <i i class="bi-basket2" style="font-size:24px;line-height:24px;">
                                         <use xlink:href="carrinho.php" />
+                                    </i>';
+                                    } else {
+                            
+                                    } 
+                                    ?>
                                     </i>
                                 </a>
                             </li>
@@ -279,33 +298,34 @@ $total_produtos = mysqli_num_rows($resultado_produtos);
             <div class="container">
                 <div class="row py-3">
                     <div class="col-12 col-md-4 text-center">
-                        &copy; 2020 - Web Feira Online Ltda ME<br>
-                        Rua Virtual Inexistente, 171, Compulândia/PC <br>
-                        CPNJ 99.999.999/0001-99
+                        &copy; 2020 - WebFeira Ltda ME<br>
+                        Sítio Neves - Zona Rural, SN, Jucati/PE <br>
+                        CPNJ 32.001.533/0001-84
                     </div>
                     <div class="col-12 col-md-4 text-center">
-                        <a href="privacidade.html" class="text-decoration-none text-dark">
+                        <a href="privacidade.php" class="text-decoration-none text-dark">
                             Política de Privacidade
                         </a><br>
-                        <a href="termos.html" class="text-decoration-none text-dark">
+                        <a href="termos.php" class="text-decoration-none text-dark">
                             Termos de Uso
                         </a><br>
-                        <a href="quemsomos.html" class="text-decoration-none text-dark">
+                        <a href="quemsomos.php" class="text-decoration-none text-dark">
                             Quem Somos
                         </a><br>
-                        <a href="trocas.html" class="text-decoration-none text-dark">
+                        <a href="trocas.php" class="text-decoration-none text-dark">
                             Trocas e Devoluções
                         </a>
                     </div>
                     <div class="col-12 col-md-4 text-center">
-                        <a href="contato.html" class="text-decoration-none text-dark">
+                        <a href="contato.php" class="text-decoration-none text-dark">
                             Contato pelo Site
                         </a><br>
                         E-mail: <a href="mailto:email@dominio.com" class="text-decoration-none text-dark">
                             email@dominio.com
                         </a><br>
-                        Telefone: <a href="phone:28999990000" class="text-decoration-none text-dark">
-                            (28) 99999-0000
+                        Telefone: <a href="phone:87981189959" class="text-decoration-none text-dark">
+                            
+                                (87) 98118-9959
                         </a>
                     </div>
                 </div>

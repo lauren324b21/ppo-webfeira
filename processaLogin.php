@@ -18,7 +18,7 @@
         header('Location: index.php');
         exit();
     } else {
-        header('Location: erro.html');
+        echo  "<script>alert('Email ou Senha inválidos!');window.location.href = 'login.php';</script>";
         exit();
     }
 
