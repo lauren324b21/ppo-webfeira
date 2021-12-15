@@ -1,8 +1,14 @@
 <?php include_once("conexao.php");
 
+    session_start();
     $pesquisar = $_POST['pesquisar'];
     $r_produtos = "SELECT * FROM produto WHERE nome like '%$pesquisar%' LIMIT 5";
     $re_produtos = mysqli_query($conexao, $r_produtos);
+
+    $email = $_SESSION['email'];
+    $sql   = "SELECT * FROM cliente WHERE email='$email'";
+    $qr    = mysqli_query($conexao,$sql) or die (mysqli_error());
+    $row_clientes    = mysqli_fetch_assoc($qr);
  
     $pagina = (isset($_GET['pagina']))? $_GET['pagina'] : 1;
 
@@ -66,22 +72,30 @@
                             <a href="index.php" class="nav-link text-white">Principal</a>
                         </li>
                         <li class="nav-item">
-                            <a href="contato.html" class="nav-link text-white">Contato</a>
+                            <a href="contato.php" class="nav-link text-white">Contato</a>
                         </li>
                     </ul>
                     <div class="align-self-end">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a href="cliente_pedidos.html" class="nav-link text-white">Logado como 
-                            
-                                </a>
+                                    <?php
+                                    if($row_clientes <> null){
+                                    echo '<a href="cliente_pedidos.html" class="nav-link text-white">
+                                   Logado como <b>'.$row_clientes['nome'].'</b>
+                                    </a>';
+                                    } else {
+                                       echo  '<a href="cadastro.php" class="nav-link text-white">
+                                       Quero me cadastrar
+                                        </a>';
+                                    } 
+                                    ?>
                             </li>
                             <li class="nav-item">
                                 <a href="login.php" class="nav-link text-white">Entrar</a>
                             </li>
                             <li class="nav-item">
-                                <span class="badge rounded-pill bg-light text-danger position-absolute ms-4 mt-0"
-                                    title="5 produto(s) no carrinho"><small></small></span>
+                                 <span class="badge rounded-pill bg-light text-danger position-absolute ms-4 mt-0"
+                                    title="produto(s) no carrinho"><small></small></span>
                                 <a href="carrinho.php" class="nav-link text-white">
                                     <i i class="bi-basket2" style="font-size:24px;line-height:24px;">
                                         <use xlink:href="carrinho.php" />
@@ -137,7 +151,7 @@
                                     <input type="text" name="pesquisar" class="form-control" placeholder="Digite aqui o que procura">
                                     <button class="btn btn-success">Buscar</button>
                                     
-                                    <button class="btn btn-success onclick='index.php'">Voltar</button>
+                                    <a href="index.php" class="btn btn-success"> voltar </a>
                                 </div>
                             </form>
                         </div>
@@ -190,8 +204,8 @@
                     <?php while($rows_produtos = mysqli_fetch_array($re_produtos)){ ?>
                     <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
                             <div class="card text-center bg-light">
-                                <a href="#" class="position-absolute end-0 p-2 text-danger">
-                                    <i class="bi-suit-heart" style="font-size: 24px; line-height: 24px;"></i>
+                            <?php echo '<a href="cliente_favoritos.php?acao=add&codigo='.$rows_produtos['codigo'].'?>" class="position-absolute end-0 p-2 text-danger">'?>
+                                <i class="bi-suit-heart" style="font-size: 24px; line-height: 24px;"></i>
                                 </a>
                                 <a href="produto.html">
                                 <?php echo '<img src="'.$rows_produtos['imagem'].'" class="card-img-top" />' ?>

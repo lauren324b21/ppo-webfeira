@@ -5,6 +5,11 @@
         $_SESSION['favoritos'] = array();
     }
 
+    $email = $_SESSION['email'];
+    $sql   = "SELECT * FROM cliente WHERE email='$email'";
+    $qr    = mysqli_query($conexao,$sql) or die (mysqli_error());
+    $row_clientes    = mysqli_fetch_assoc($qr);
+
     //Adicionar
     if(isset($_GET['acao'])){
         
@@ -75,15 +80,13 @@
                         <ul class="navbar-nav">
                             <li class="nav-item">
                                 <a href="cliente_pedidos.html" class="nav-link text-white">Logado como 
-                            
+                                <b> <?php echo $row_clientes['nome']; ?> </b>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="login.php" class="nav-link text-white">Entrar</a>
                             </li>
                             <li class="nav-item">
-                                <span class="badge rounded-pill bg-light text-danger position-absolute ms-4 mt-0"
-                                    title="5 produto(s) no carrinho"><small></small></span>
                                 <a href="carrinho.php" class="nav-link text-white">
                                     <i i class="bi-basket2" style="font-size:24px;line-height:24px;">
                                         <use xlink:href="carrinho.php" />
@@ -155,7 +158,7 @@
                                 </div>
                                 <div class="card-footer">
                                         <?php echo '<a href="carrinho.php?acao=add&codigo='.$row_produtos['codigo'].'?>" class="btn btn-success mt-2 d-block">
-                                            Adicionar ao Carrinho
+                                            Adicionar à cestinha
                                         </a>' ?>
                                          <?php echo '<a href="?acao=del&codigo='.$row_produtos['codigo'].'" class="btn btn-success mt-2 d-block" style="font-size: 16px; line-height: 16px;">
                                             Remover dos favoritos

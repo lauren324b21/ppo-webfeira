@@ -136,7 +136,7 @@
                 
                 <div class="text-end">
                     <a href="carrinho.php" class="btn btn-outline-success btn-lg mb-3">
-                                    Voltar ao Carrinho
+                                    Voltar à cestinha
                     </a>
                     <?php 
                         if($total <> 0){

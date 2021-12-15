@@ -1,6 +1,15 @@
 
 <?php include_once('conexao.php');
     session_start();
+    $email = $_SESSION['email'];
+    $sql   = "SELECT * FROM cliente WHERE email='$email'";
+    $qr    = mysqli_query($conexao,$sql) or die (mysqli_error());
+    $row_clientes    = mysqli_fetch_assoc($qr);
+        
+    $pedido = $_SESSION['pedido'];
+    $sql2   = "SELECT * FROM pedido WHERE codigo='$pedido'";
+    $qr2    = mysqli_query($conexao,$sql2) or die (mysqli_error());
+    $row_pedidos    = mysqli_fetch_assoc($qr2);
 ?>
 <!doctype html>
 <html lang="pt-br">
@@ -49,17 +58,14 @@
                     <div class="align-self-end">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a href="cliente_pedidos.html" class="nav-link text-white">
-                                    <?php echo 'Logado como <b>'.$row_clientes['nome'].'</b>' 
-                                    ?>
+                                <a href="cliente_pedidos.html" class="nav-link text-white">Logado como 
+                                <b> <?php echo $row_clientes['nome']; ?> </b>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="login.php" class="nav-link text-white">Entrar</a>
                             </li>
                             <li class="nav-item">
-                                 <span class="badge rounded-pill bg-light text-danger position-absolute ms-4 mt-0"
-                                    title="produto(s) no carrinho"><small></small></span>
                                 <a href="carrinho.php" class="nav-link text-white">
                                     <i i class="bi-basket2" style="font-size:24px;line-height:24px;">
                                         <use xlink:href="carrinho.php" />
@@ -77,12 +83,19 @@
                 <h1>Obrigado!</h1>
                 <hr>
                 <h3>Anote o número de seu pedido:</h3>
-                <h2 class="text-success"><b><?php echo $_SESSION['pedido'] ?></b></h2>
+                <h2 class="text-success"><b> 
+                    <p>
+                        <?php echo ''.$_SESSION['pedido'];'' ?>
+                    </p>
+                </b></h2>
                 <p>Em até 2 horas, seu pedido será entregue. Qualquer dúvida sobre este pedido, entre em contato conosco e informe o número do pedido para que possamos te ajudar.</p>
                 <p>Tenha um ótimo dia!</p>
                 <p>
                     Atenciosamente,<br>
                     Equipe Web Feira
+                </p>
+                <p>
+                    <a href="indexPDF.php" class="btn btn-success btn-lg"  target="_blank">Gerar Resumo do Pedido</a>
                 </p>
                 <p>
                     <a href="index.php" class="btn btn-success btn-lg">Voltar à Página Principal</a>

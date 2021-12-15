@@ -54,7 +54,7 @@ $total_produtos = mysqli_num_rows($resultado_produtos);
 <body>
 
     <div class="d-flex flex-column wrapper">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-success border-bottom shadow-sm mb-3">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success border-bottom shadow-sm mb-3">
             <div class="container">
                 <a class="navbar-brand" href="index.php">
                     <strong>Web Feira</strong>
@@ -69,16 +69,23 @@ $total_produtos = mysqli_num_rows($resultado_produtos);
                             <a href="index.php" class="nav-link text-white">Principal</a>
                         </li>
                         <li class="nav-item">
-                            <a href="contato.html" class="nav-link text-white">Contato</a>
+                            <a href="contato.php" class="nav-link text-white">Contato</a>
                         </li>
                     </ul>
                     <div class="align-self-end">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a href="cliente_pedidos.html" class="nav-link text-white">
-                                    <?php echo 'Logado como <b>'.$row_clientes['nome'].'</b>' 
+                                    <?php
+                                    if($row_clientes <> null){
+                                    echo '<a href="cliente_pedidos.html" class="nav-link text-white">
+                                   Logado como <b>'.$row_clientes['nome'].'</b>
+                                    </a>';
+                                    } else {
+                                       echo  '<a href="cadastro.php" class="nav-link text-white">
+                                       Quero me cadastrar
+                                        </a>';
+                                    } 
                                     ?>
-                                </a>
                             </li>
                             <li class="nav-item">
                                 <a href="login.php" class="nav-link text-white">Entrar</a>
@@ -209,7 +216,7 @@ $total_produtos = mysqli_num_rows($resultado_produtos);
                             </div>
                             <div class="card-footer">
                             <?php echo '<a href="carrinho.php?acao=add&codigo='.$row_produtos['codigo'].'?>" class="btn btn-success mt-2 d-block">
-                                    Adicionar ao Carrinho
+                                    Adicionar à cestinha
                                 </a>' ?>
                                 <small class="text-success"><?php echo $row_produtos['unidade']; ?> Kgs em estoque</small>
                             </div>

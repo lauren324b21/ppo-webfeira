@@ -1,6 +1,11 @@
 <?php include_once("conexao.php");
     
     session_start();
+    $email = $_SESSION['email'];
+    $sql   = "SELECT * FROM cliente WHERE email='$email'";
+    $qr    = mysqli_query($conexao,$sql) or die (mysqli_error());
+    $row_clientes    = mysqli_fetch_assoc($qr);
+    
     if(!isset($_SESSION['carrinho'])){
         $_SESSION['carrinho'] = array();
     }
@@ -93,7 +98,7 @@
                         <ul class="navbar-nav">
                             <li class="nav-item">
                                 <a href="cliente_pedidos.html" class="nav-link text-white">Logado como 
-                            
+                                <b> <?php echo $row_clientes['nome']; ?> </b>
                                 </a>
                             </li>
                             <li class="nav-item">
@@ -115,14 +120,13 @@
         <main class="flex-fill">
         <form action="?acao=up" method="post">
             <div class="container">
-                <h1>Carrinho de Compras</h1>
+                <h1>Cestinha de Compras</h1>
                 <?php
                 $total = 0;
                     if(count($_SESSION['carrinho']) == 0){
                         echo '<h5><a href="#" class="text-decoration-none text-success">
                         Carrinho Vazio </a></h5>';
                     } else {
-                        
                         is_numeric($total);
                         foreach($_SESSION['carrinho'] as $codigo => $qtd){
                             $_SESSION['qtd'] = $qtd;
@@ -188,7 +192,6 @@
                                     $total = number_format($total, 2, ',', '.');
                                     echo '<a class="btn btn-outline-success btn-lg">Valor total: '.$total.'</a>';
                                 } else {
-                                   
                                 }
                             $_SESSION['total'] = $total;    
                             ?>
