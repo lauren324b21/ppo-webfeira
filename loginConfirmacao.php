@@ -1,13 +1,4 @@
-<?php include_once("conexao.php");
- 
-session_start();
-if($_SESSION['email'] <> null){
-    $email = $_SESSION['email'];
-    $sql   = "SELECT * FROM cliente WHERE email='$email'";
-    $qr    = mysqli_query($conexao,$sql) or die (mysqli_error());
-    $row_clientes    = mysqli_fetch_assoc($qr);
-    }
-?>
+
 <!doctype html>
 <html lang="pt-br">
 
@@ -22,19 +13,19 @@ if($_SESSION['email'] <> null){
     <link rel="icon" type="image/png" sizes="16x16" href="img/favicon/favicon-16x16.png">
     <link rel="manifest" href="img/favicon/manifest.json">
     <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="/img/favicon/ms-icon-144x144.png">
+    <meta name="msapplication-TileImage" content="img/favicon/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
 
-    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="node_modules/bootstrap-icons/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" type="text/css"/>
+    <link rel="stylesheet" href="node_modules/bootstrap-icons/font/bootstrap-icons.css" type="text/css"/>
+    <link rel="stylesheet" href="css/index.css" type="text/css"/>
 
-    <title>WebFeira :: Contato</title>
+    <title>Web Feira :: Login</title>
 </head>
 
 <body>
     <div class="d-flex flex-column wrapper">
-       <nav class="navbar navbar-expand-lg navbar-dark bg-success border-bottom shadow-sm mb-3">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success border-bottom shadow-sm mb-3">
             <div class="container">
                 <a class="navbar-brand" href="index.php">
                     <strong>Web Feira</strong>
@@ -49,39 +40,18 @@ if($_SESSION['email'] <> null){
                             <a href="index.php" class="nav-link text-white">Principal</a>
                         </li>
                         <li class="nav-item">
-                            <a href="contato.php" class="nav-link text-white">Contato</a>
+                            <a href="contato.html" class="nav-link text-white">Contato</a>
                         </li>
                     </ul>
                     <div class="align-self-end">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                    <?php
-                                    if($_SESSION['email'] <> null){
-                                    echo '<a href="cliente_pedidos.html" class="nav-link text-white">
-                                   Logado como <b>'.$row_clientes['nome'].'</b>
-                                    </a>';
-                                    } else {
-                                       echo  '<a href="cadastro.php" class="nav-link text-white">
-                                       Quero me cadastrar
-                                        </a>';
-                                    } 
-                                    ?>
+                                <a href="cadastro.php" class="nav-link text-white"> Quero me cadastrar 
+                                <b>  </b>
+                                </a>
                             </li>
                             <li class="nav-item">
                                 <a href="login.php" class="nav-link text-white">Entrar</a>
-                            </li>
-                            <li class="nav-item">
-                                    <?php
-                                    if($_SESSION['email'] <> null){
-                                    echo '<a href="carrinho.php" class="nav-link text-white">
-                                    <i i class="bi-basket2" style="font-size:24px;line-height:24px;">
-                                        <use xlink:href="carrinho.php" />
-                                    </i>';
-                                    } else {
-                                       
-                                    } 
-                                    ?>
-                                </a>
                             </li>
                         </ul>
                     </div>
@@ -90,46 +60,45 @@ if($_SESSION['email'] <> null){
         </nav>
  
         <main class="flex-fill">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <form class="col-sm-10 col-md-8 col-lg-6">
-                        <h1>Entre em Contato</h1>
-
-                        <div class="form-floating mb-3">
-                            <input type="text" id="txtNomeCompleto" class="form-control" placeholder=" " autofocus>
-                            <label for="txtNomeCompleto">Nome Completo</label>
-                        </div>
+            <div class="container">    
+            <div class="row justify-content-center">        
+                    <form class="col-sm-10 col-md-8 col-lg-6" method="post" action="processaLoginAlteracao.php">
+                            <h1>Identifique-se</h1>
+                                <div class="form-floating mb-3">
+                                    <input type="email" name="email" id="email" class="form-control" placeholder=" " >
+                                    <label for="email">E-mail</label>
+                                 </div>
                         
-                        <div class="form-floating mb-3">
-                            <input type="email" id="txtEmail" class="form-control" placeholder=" ">
-                            <label for="txtEmail">E-mail</label>
-                        </div>
+                                 <div class="form-floating mb-3">
+                                    <input type="password" name="senha" id="senha" class="form-control" placeholder=" ">
+                                    <label for="senha">Senha</label>
+                                </div>
 
-                        <div class="form-floating mb-3">
-                            <textarea id="txtMensagem" class="form-control" placeholder=" " style="height: 200px;"></textarea>
-                            <label for="txtMensagem">Mensagem</label>
-                        </div>
-
-                        <button type="button" onclick="window.location.href='/confirmcontato.html'" class="btn btn-lg btn-success">Enviar Mensagem</button>
+                                <div class="form-check mb-3">
+                                    <input type="checkbox" class="form-check-input" value="" id="chkLembrar">
+                                    <label for="chkLembrar" class="form-check-label">Lembrar de mim</label>
+                                </div>
+                                <input type="submit" class="btn btn-lg btn-success" value="Entrar">
+                                
+                            </form>
 
                         <p class="mt-3">
-                            Faremos nosso melhor para responder sua mensagem em até 2 dias úteis.
+                            <a href="/recuperarsenha.html">Esqueceu a senha?</a> 
                         </p>
 
                         <p class="mt-3">
-                            Atenciosamente,<br>
-                            Central de Relacionamento WebFeira
+                            <a href="/cadastro.html">Ou cadastre-se</a>
                         </p>
-                    </form>
-                </div>
+                </div>       
             </div>
+            
         </main>
 
         <footer class="border-top text-muted bg-light">
             <div class="container">
                 <div class="row py-3">
                     <div class="col-12 col-md-4 text-center">
-                        &copy; 2021 - WebFeira Ltda ME<br>
+                        &copy; 2020 - WebFeira Ltda ME<br>
                         Sítio Neves - Zona Rural, SN, Jucati/PE <br>
                         CPNJ 32.001.533/0001-84
                     </div>

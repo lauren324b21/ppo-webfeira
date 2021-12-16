@@ -76,7 +76,7 @@
                                     <label for="cpf">CPF</label>
                                 </div>
                                 <div class="form-floating mb-3 col-md-6 col-xl-4">
-                                    <input class="form-control" type="date" id="nascimento" name="nascimento" placeholder=" " />
+                                    <input class="form-control" type="date" id="datanascimento" name="datanascimento" placeholder=" " />
                                     <label for="txtDataNascimento" class="d-inline d-sm-none d-md-inline d-lg-none">Data
                                         Nascimento</label>
                                 </div>
@@ -153,7 +153,7 @@
             <div class="container">
                 <div class="row py-3">
                     <div class="col-12 col-md-4 text-center">
-                        &copy; 2020 - WebFeira Ltda ME<br>
+                        &copy; 2021 - WebFeira Ltda ME<br>
                         Sítio Neves - Zona Rural, SN, Jucati/PE <br>
                         CPNJ 32.001.533/0001-84
                     </div>

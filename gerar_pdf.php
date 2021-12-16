@@ -12,7 +12,7 @@
 	}
 
 	while ($row_pedidos = mysqli_fetch_assoc($qr2)){
-		$html .= '<h4> Fatura Pedido Web Feira 🌿 </h4>';
+		$html .= '<h4> Resumo Pedido Web Feira 🌿 </h4>';
 		$html .= 'N° do Pedido: '.$row_pedidos['codigo'].'<br>'; 
 		$html .= 'Nome do Cliente: '.$row_pedidos['nomeCliente'].'<br>';
 		$html .= 'Data do pedido: '.$row_pedidos['datapedido'].'<br>';

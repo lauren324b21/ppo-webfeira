@@ -12,9 +12,10 @@
     $rua = $_POST['rua'];
     $cidade = $_POST['cidade'];
     $estado = $_POST['estado'];
+    $datanascimento = $_POST['datanascimento'];
     
-    $sql = "insert into cliente (nome,email,senha,cpf,telefone,numero,rua,cidade,estado) 
-    values ('$nome','$email','$senha','$cpf','$telefone','$numero','$rua','$cidade','$estado')";
+    $sql = "insert into cliente (nome,email,senha,cpf,telefone,numero,rua,cidade,estado,datanascimento) 
+    values ('$nome','$email','$senha','$cpf','$telefone','$numero','$rua','$cidade','$estado','$datanascimento')";
     $salvar = mysqli_query($conexao,$sql);
 
     $linhas = mysqli_affected_rows($conexao); 

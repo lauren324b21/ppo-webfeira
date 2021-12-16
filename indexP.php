@@ -1,6 +1,8 @@
 <?php include_once("conexao.php");
  
 session_start();
+
+
 if($_SESSION['email'] <> null){
 $email = $_SESSION['email'];
 $sql   = "SELECT * FROM cliente WHERE email='$email'";
@@ -74,46 +76,17 @@ $total_produtos = mysqli_num_rows($resultado_produtos);
                     </ul>
                     <div class="align-self-end">
                         <ul class="navbar-nav">
-                                    <?php
-                                    if($_SESSION['email'] <> null){
-                                    echo '
-                                    <li class="nav-item">
-                                    <a href="cliente_dados.php" class="nav-link text-white">
-                                   Logado como <b>'.$row_clientes['nome'].'</b>
-                                    </a>
-                                    </li>';
-                                    echo  '
-                                    <li class="nav-item">
-                                    <a href="login.php" class="nav-link text-white">
-                                   Sair
-                                     </a>
-                                     </li>';
-                                    } else {
-                                       echo  '
                                        </li>
                                        <a href="cadastro.php" class="nav-link text-white">
                                        Quero me cadastrar
                                         </a>
-                                        </li>';
-                                        echo  '
+                                        </li>
                                         </li>
                                         <a href="login.php" class="nav-link text-white">
                                        Entrar
                                          </a>
-                                         </li>';
-                                    } 
-                                    ?>
+                                         </li>
                             <li class="nav-item">
-                            <?php
-                                    if($_SESSION['email'] <> null){
-                                    echo '<a href="carrinho.php" class="nav-link text-white">
-                                    <i i class="bi-basket2" style="font-size:24px;line-height:24px;">
-                                        <use xlink:href="carrinho.php" />
-                                    </i>';
-                                    } else {
-                            
-                                    } 
-                                    ?>
                                     </i>
                                 </a>
                             </li>
@@ -297,7 +270,7 @@ $total_produtos = mysqli_num_rows($resultado_produtos);
             <div class="container">
                 <div class="row py-3">
                     <div class="col-12 col-md-4 text-center">
-                        &copy; 2021 - WebFeira Ltda ME<br>
+                        &copy; 2020 - WebFeira Ltda ME<br>
                         Sítio Neves - Zona Rural, SN, Jucati/PE <br>
                         CPNJ 32.001.533/0001-84
                     </div>

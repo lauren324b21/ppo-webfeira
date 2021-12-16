@@ -2,11 +2,12 @@
  
 session_start();
 if($_SESSION['email'] <> null){
-    $email = $_SESSION['email'];
-    $sql   = "SELECT * FROM cliente WHERE email='$email'";
-    $qr    = mysqli_query($conexao,$sql) or die (mysqli_error());
-    $row_clientes    = mysqli_fetch_assoc($qr);
-    }
+$email = $_SESSION['email'];
+$sql   = "SELECT * FROM cliente WHERE email='$email'";
+$qr    = mysqli_query($conexao,$sql) or die (mysqli_error());
+$row_clientes    = mysqli_fetch_assoc($qr);
+}
+
 ?>
 <!doctype html>
 <html lang="pt-br">
@@ -22,19 +23,19 @@ if($_SESSION['email'] <> null){
     <link rel="icon" type="image/png" sizes="16x16" href="img/favicon/favicon-16x16.png">
     <link rel="manifest" href="img/favicon/manifest.json">
     <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="/img/favicon/ms-icon-144x144.png">
+    <meta name="msapplication-TileImage" content="img/favicon/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
 
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="node_modules/bootstrap-icons/font/bootstrap-icons.css">
     <link rel="stylesheet" href="css/index.css">
 
-    <title>WebFeira :: Contato</title>
+    <title>Web Feira :: Área do Cliente :: Dados Pessoais</title>
 </head>
 
 <body>
     <div class="d-flex flex-column wrapper">
-       <nav class="navbar navbar-expand-lg navbar-dark bg-success border-bottom shadow-sm mb-3">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success border-bottom shadow-sm mb-3">
             <div class="container">
                 <a class="navbar-brand" href="index.php">
                     <strong>Web Feira</strong>
@@ -54,33 +55,47 @@ if($_SESSION['email'] <> null){
                     </ul>
                     <div class="align-self-end">
                         <ul class="navbar-nav">
-                            <li class="nav-item">
                                     <?php
                                     if($_SESSION['email'] <> null){
-                                    echo '<a href="cliente_pedidos.html" class="nav-link text-white">
+                                    echo '
+                                    <li class="nav-item">
+                                    <a href="cliente_dados.php" class="nav-link text-white">
                                    Logado como <b>'.$row_clientes['nome'].'</b>
-                                    </a>';
+                                    </a>
+                                    </li>';
+                                    echo  '
+                                    <li class="nav-item">
+                                    <a href="login.php" class="nav-link text-white">
+                                   Sair
+                                     </a>
+                                     </li>';
                                     } else {
-                                       echo  '<a href="cadastro.php" class="nav-link text-white">
+                                       echo  '
+                                       </li>
+                                       <a href="cadastro.php" class="nav-link text-white">
                                        Quero me cadastrar
-                                        </a>';
+                                        </a>
+                                        </li>';
+                                        echo  '
+                                        </li>
+                                        <a href="login.php" class="nav-link text-white">
+                                       Entrar
+                                         </a>
+                                         </li>';
                                     } 
                                     ?>
-                            </li>
                             <li class="nav-item">
-                                <a href="login.php" class="nav-link text-white">Entrar</a>
-                            </li>
-                            <li class="nav-item">
-                                    <?php
+                            <?php
                                     if($_SESSION['email'] <> null){
                                     echo '<a href="carrinho.php" class="nav-link text-white">
                                     <i i class="bi-basket2" style="font-size:24px;line-height:24px;">
                                         <use xlink:href="carrinho.php" />
                                     </i>';
                                     } else {
-                                       
+                            
                                     } 
                                     ?>
+                                    </i>
                                 </a>
                             </li>
                         </ul>
@@ -91,36 +106,54 @@ if($_SESSION['email'] <> null){
  
         <main class="flex-fill">
             <div class="container">
-                <div class="row justify-content-center">
-                    <form class="col-sm-10 col-md-8 col-lg-6">
-                        <h1>Entre em Contato</h1>
-
-                        <div class="form-floating mb-3">
-                            <input type="text" id="txtNomeCompleto" class="form-control" placeholder=" " autofocus>
-                            <label for="txtNomeCompleto">Nome Completo</label>
+                <h1>Minha Conta</h1>
+                <div class="row gx-3">
+                    <div class="col-4">
+                        <div class="list-group">
+                            <a href="cliente_dados.php" class="list-group-item list-group-item-action bg-success text-light">
+                                <i class="bi-person fs-6"></i> Dados Pessoais
+                            </a>
+                            <a href="cliente_contatos.php" class="list-group-item list-group-item-action">
+                                <i class="bi-mailbox fs-6"></i> Contatos
+                            </a>
+                            <a href="cliente_endereco.php" class="list-group-item list-group-item-action">
+                                <i class="bi-house-door fs-6"></i> Endereço
+                            </a>
+                            <a href="cliente_pedidos.php" class="list-group-item list-group-item-action">
+                                <i class="bi-bicycle fs-6"></i> Pedidos
+                            </a>
+                            <a href="cliente_favoritos.php" class="list-group-item list-group-item-action">
+                                <i class="bi-heart fs-6"></i> Favoritos
+                            </a>
+                            <a href="cliente_senha.php" class="list-group-item list-group-item-action">
+                                <i class="bi-lock fs-6"></i> Alterar Senha
+                            </a>
+                            <a href="login.php" class="list-group-item list-group-item-action">
+                                <i class="bi-door-open fs-6"></i> Sair
+                            </a>
                         </div>
-                        
-                        <div class="form-floating mb-3">
-                            <input type="email" id="txtEmail" class="form-control" placeholder=" ">
-                            <label for="txtEmail">E-mail</label>
-                        </div>
-
-                        <div class="form-floating mb-3">
-                            <textarea id="txtMensagem" class="form-control" placeholder=" " style="height: 200px;"></textarea>
-                            <label for="txtMensagem">Mensagem</label>
-                        </div>
-
-                        <button type="button" onclick="window.location.href='/confirmcontato.html'" class="btn btn-lg btn-success">Enviar Mensagem</button>
-
-                        <p class="mt-3">
-                            Faremos nosso melhor para responder sua mensagem em até 2 dias úteis.
-                        </p>
-
-                        <p class="mt-3">
-                            Atenciosamente,<br>
-                            Central de Relacionamento WebFeira
-                        </p>
-                    </form>
+                    </div>
+                    <div class="col-8">
+                        <form action="loginConfirmacao.php">
+                        <div class="clearfix"></div>
+                                <div class="form-floating mb-3 col-md-4">
+                                <?php echo '<a class="btn btn-outline-success btn-lg">Nome: '.$row_clientes['nome'].'</a>'; ?>
+                                </div>
+                                <div class="form-floating mb-3 col-md-8">
+                                    <input class="form-control" type="text" id="nome" name="nome" maxlength="40" required placeholder=" " />
+                                    <label for="txtComplemento">Novo Nome </label>
+                                </div>
+                                <div class="form-floating mb-3 col-md-8">
+                                <?php echo '<a class="btn btn-outline-success btn-lg">Data de nascimento: '.$row_clientes['datanascimento'].'</a>'; ?>
+                                </div>
+                                <div class="form-floating mb-3 col-md-6 col-xl-4">
+                                <input class="form-control" type="date" id="txtDataNascimento" placeholder=" " />
+                                <label for="txtDataNascimento">Data de Nascimento</label>
+                            </div>
+                            <button type="button" onclick="window.location.href='loginConfirmacao.php'"
+                                class="btn btn-lg btn-success">Alterar Dados</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </main>

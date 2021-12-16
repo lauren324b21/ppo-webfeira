@@ -50,7 +50,7 @@
     <meta name="theme-color" content="#ffffff">
 
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="ode_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="node_modules/bootstrap-icons/font/bootstrap-icons.css">
     <link rel="stylesheet" href="css/index.css">
 
     <title>Web Feira :: Área do Cliente :: Favoritos</title>
@@ -101,26 +101,26 @@
  
         <main class="flex-fill">
             <div class="container">
-                <h1>Minha Conta</h1>
-                <div class="row gx-3 mb-3">
+            <h1>Minha Conta</h1>
+                <div class="row gx-3">
                     <div class="col-4">
                         <div class="list-group">
-                            <a href="cliente_dados.html" class="list-group-item list-group-item-action">
+                            <a href="cliente_dados.php" class="list-group-item list-group-item-action bg-success text-light">
                                 <i class="bi-person fs-6"></i> Dados Pessoais
                             </a>
-                            <a href="cliente_contatos.html" class="list-group-item list-group-item-action">
+                            <a href="cliente_contatos.php" class="list-group-item list-group-item-action">
                                 <i class="bi-mailbox fs-6"></i> Contatos
                             </a>
-                            <a href="cliente_endereco.html" class="list-group-item list-group-item-action">
+                            <a href="cliente_endereco.php" class="list-group-item list-group-item-action">
                                 <i class="bi-house-door fs-6"></i> Endereço
                             </a>
-                            <a href="cliente_pedidos.html" class="list-group-item list-group-item-action">
+                            <a href="cliente_pedidos.php" class="list-group-item list-group-item-action">
                                 <i class="bi-bicycle fs-6"></i> Pedidos
                             </a>
-                            <a href="cliente_favoritos.html" class="list-group-item list-group-item-action bg-success text-light">
+                            <a href="cliente_favoritos.php" class="list-group-item list-group-item-action">
                                 <i class="bi-heart fs-6"></i> Favoritos
                             </a>
-                            <a href="cliente_senha.html" class="list-group-item list-group-item-action">
+                            <a href="cliente_senha.php" class="list-group-item list-group-item-action">
                                 <i class="bi-lock fs-6"></i> Alterar Senha
                             </a>
                             <a href="login.php" class="list-group-item list-group-item-action">
@@ -182,7 +182,7 @@
             <div class="container">
                 <div class="row py-3">
                     <div class="col-12 col-md-4 text-center">
-                        &copy; 2020 - WebFeira Ltda ME<br>
+                        &copy; 2021 - WebFeira Ltda ME<br>
                         Sítio Neves - Zona Rural, SN, Jucati/PE <br>
                         CPNJ 32.001.533/0001-84
                     </div>

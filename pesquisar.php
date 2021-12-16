@@ -284,7 +284,7 @@
             <div class="container">
                 <div class="row py-3">
                     <div class="col-12 col-md-4 text-center">
-                        &copy; 2020 - WebFeira Ltda ME<br>
+                        &copy; 2021 - WebFeira Ltda ME<br>
                         Sítio Neves - Zona Rural, SN, Jucati/PE <br>
                         CPNJ 32.001.533/0001-84
                     </div>
